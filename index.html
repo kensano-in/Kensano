@@ -45,49 +45,142 @@
       </div>
     </header>
 
-    <!-- HERO -->
-    <section id="hero" class="hero">
-      <div class="hero-bg">
-        <canvas id="hero-canvas" class="hero-canvas"></canvas>
-        <div class="hero-grid"></div>
+   <!-- HERO / LANDING -->
+<section class="hero" id="top">
+  <div class="hero-shell">
+    <!-- LEFT: COPY -->
+    <div class="hero-main">
+      <p class="hero-kicker">Quiet, high-trust digital studio.</p>
+
+      <h1 class="hero-title">
+        A premium future<br>
+        for digital craft<span class="hero-dot">.</span>
+      </h1>
+
+      <p class="hero-lead">
+        Kensano builds, edits, and delivers high-trust digital assets — from
+        alternate WhatsApp lines to full-stack launch sites, cinematic edits,
+        code, and custom shayari. Fast. Private. Elegant. Slightly dangerous.
+      </p>
+
+      <ul class="hero-points">
+        <li><span>Uptime</span> enterprise-grade</li>
+        <li><span>Delivery</span> instant &amp; encrypted</li>
+        <li><span>Support</span> 24/7 direct line</li>
+      </ul>
+
+      <div class="hero-actions">
+        <a href="#services" class="btn btn-primary">
+          Explore services
+        </a>
+        <a href="product.html" class="btn btn-ghost">
+          Shop numbers &amp; scripts
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT: 3D STACK -->
+    <div class="hero-visual">
+      <div class="hero-orbit">
+        <div class="hero-orbit-ring hero-orbit-ring--outer"></div>
+        <div class="hero-orbit-ring hero-orbit-ring--inner"></div>
+        <div class="hero-orbit-core"></div>
       </div>
 
-      <div class="ks-container hero-inner">
-        <div class="hero-left">
-          <h1 class="hero-title">A premium future for digital craft<span class="accent">.</span></h1>
-          <p class="hero-lead">We build, edit, and deliver high-trust digital assets — from curated WhatsApp lines to full-stack websites and cinematic video edits. Fast. Private. Elegant.</p>
+      <div class="hero-stack">
+        <!-- CARD 1 – Website build -->
+        <article class="hero-card hero-card--primary">
+          <header class="hero-card-header">
+            <span class="pill pill-soft">Featured</span>
+            <span class="hero-card-status">Website build</span>
+          </header>
 
-          <div class="hero-ctas">
-            <a href="#services" class="btn-primary btn-magnetic">Explore Services</a>
-            <a href="/product.html" class="btn-secondary">Shop Numbers & Scripts</a>
+          <div class="hero-card-media">
+            <img
+              src="https://images.pexels.com/photos/3746310/pexels-photo-3746310.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              alt="Futuristic workstation for web design"
+              loading="lazy"
+            >
+            <div class="hero-card-glow"></div>
           </div>
 
-          <ul class="hero-keys">
-            <li><strong>Uptime</strong> enterprise-grade</li>
-            <li><strong>Delivery</strong> instant & encrypted</li>
-            <li><strong>Support</strong> 24/7 direct line</li>
-          </ul>
-        </div>
+          <div class="hero-card-body">
+            <h3>Dark, minimal, conversion-driven launch sites.</h3>
+            <p>
+              Soft-glass UI, custom code, SEO-ready, wired for payments and
+              automation. Built quiet, shipped loud.
+            </p>
 
-        <div class="hero-right">
-          <div class="card-3d floating-card">
-            <div class="card-media">
-              <img src="assets/hero_preview.jpg" alt="preview">
-            </div>
-            <div class="card-body">
-              <h4>Featured — Website Build</h4>
-              <p>Fast, secure, minimal, high-conversion landing sites with bespoke backend.</p>
-              <div class="card-actions">
-                <a href="#services" class="btn-sm">Request Quote</a>
-                <a href="/product.html" class="btn-ghost">View Samples</a>
+            <ul class="hero-card-metrics">
+              <li>
+                <strong>24h</strong>
+                <span>prototype</span>
+              </li>
+              <li>
+                <strong>99.9%</strong>
+                <span>uptime</span>
+              </li>
+              <li>
+                <strong>Custom</strong>
+                <span>stack</span>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- CARD 2 – Numbers & scripts -->
+        <article class="hero-card hero-card--secondary">
+          <header class="hero-card-header">
+            <span class="pill pill-outline">Store</span>
+            <span class="hero-card-status">Numbers &amp; scripts</span>
+          </header>
+
+          <div class="hero-card-body hero-card-body--compact">
+            <p>
+              Curated WhatsApp / Telegram lines, high-retention hooks, and
+              ready-to-shoot short-form scripts.
+            </p>
+
+            <div class="hero-mini-grid">
+              <div class="mini-box">
+                <span class="mini-label">Alt Numbers</span>
+                <span class="mini-value">+1 • +44 • +971</span>
+              </div>
+              <div class="mini-box">
+                <span class="mini-label">Script Packs</span>
+                <span class="mini-value">Reels • Shorts • YT</span>
               </div>
             </div>
-          </div>
-          <div class="particles" id="hero-particles"></div>
-        </div>
-      </div>
-    </section>
 
+            <a href="product.html" class="mini-cta">
+              View catalog →
+            </a>
+          </div>
+        </article>
+
+        <!-- CARD 3 – Shayari vault -->
+        <article class="hero-card hero-card--tertiary">
+          <header class="hero-card-header">
+            <span class="pill pill-holo">Shayari vault</span>
+          </header>
+
+          <div class="hero-card-body hero-card-body--shayari">
+            <p class="shayari-line">
+              “Sukoon ko taala laga, ab hum sirf aag likhte hain.”
+            </p>
+            <p class="shayari-line">
+              “Raat se dosti hai, dard se rishta purana hai.”
+            </p>
+            <p class="shayari-note">
+              Custom lines for reels, brands, and private letters —
+              written in your tone, not templates.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
     <!-- ABOUT / MISSION -->
     <section id="about" class="ks-section ks-about">
       <div class="ks-container">
