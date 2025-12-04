@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin Dashboard — Kensano</title>
+  <link rel="stylesheet" href="css/root.css">
+  <script>
+    // note: this admin page is frontend-only. For solid admin you must add server-side auth + endpoints (see README).
+  </script>
+</head>
+<body class="ks-body">
+  <div class="ks-container">
+    <h2>Admin Dashboard (Demo mode)</h2>
+    <div style="display:flex;gap:16px">
+      <div style="flex:1">
+        <div class="glass">
+          <h4>Orders</h4>
+          <ul id="admin-orders">
+            <li>No orders (demo)</li>
+          </ul>
+        </div>
+        <div class="glass" style="margin-top:12px">
+          <h4>Add Product</h4>
+          <form id="admin-add">
+            <label>Title<input name="title"></label><br/>
+            <label>Price<input name="price"></label><br/>
+            <button type="submit" class="btn-sm btn-primary">Add</button>
+          </form>
+        </div>
+      </div>
+      <aside style="width:320px">
+        <div class="glass">
+          <h4>Site settings</h4>
+          <p>Domain: <strong>kensano.in</strong></p>
+          <p>Payment keys: <em>not set</em></p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>
