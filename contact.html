@@ -1,20 +1,174 @@
-<!doctype html>
-<html>
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contact</title><link rel="stylesheet" href="css/root.css"></head>
-<body class="ks-body">
-  <div class="ks-container">
-    <h2>Contact Kensano</h2>
-    <p>For quotes, include service, timeline, and reference links.</p>
-    <form id="contact-form" class="glass" style="padding:18px;max-width:720px">
-      <label>Name<input name="name" required></label><br/>
-      <label>Email<input name="email" type="email" required></label><br/>
-      <label>Service<select name="service">
-        <option>Website build</option><option>Script</option><option>Numbers</option><option>Editing</option>
-      </select></label><br/>
-      <label>Message<textarea name="message" rows="6"></textarea></label><br/>
-      <button class="btn-primary">Send</button>
-    </form>
-    <p style="color:var(--muted);margin-top:12px">Note: this form needs an endpoint; integrate with serverless function or worker to capture leads.</p>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Contact — Kensano Digital Forge</title>
+
+    <meta name="description"
+        content="Contact Kensano — futuristic digital services for numbers, scripts, edits, websites, coding, and creative writing." />
+
+    <link rel="stylesheet" href="css/root.css" />
+</head>
+
+<body>
+    <div class="cursor-glow"></div>
+    <img src="assets/shards/shard-orange.png" class="shard shard-left">
+    <img src="assets/shards/shard-purple.png" class="shard shard-right">
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container site-header-inner">
+            <div class="brand">
+                <div class="brand-mark">K</div>
+                <div class="brand-text">KENSANO<span class="brand-dot">.</span></div>
+            </div>
+
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="contact.html" class="active">Contact</a>
+            </nav>
+
+            <div class="nav-cta">
+                <a href="account.html" class="btn btn-ghost">Dashboard</a>
+            </div>
+            <button class="nav-toggle"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero small-hero">
+        <div class="container hero-inner">
+            <div data-reveal>
+                <div class="hero-kicker">Reach Out</div>
+                <h1 class="hero-title">Let's Build<br><span style="color:var(--accent)">Something Intelligent.</span></h1>
+                <p class="hero-subtitle">
+                    Share your idea. We respond fast, maintain confidentiality,
+                    and help shape your digital system with futuristic precision.
+                </p>
+            </div>
+
+            <div class="hero-panel" data-reveal>
+                <div class="hero-panel-header">
+                    <div class="hero-chip">CONNECT</div><span>LIVE</span>
+                </div>
+                <h3 class="hero-panel-title">Support + Sales</h3>
+                <p class="hero-panel-copy">
+                    Prefer WhatsApp or Email? Use any channel — we reply instantly.
+                </p>
+                <div class="hero-panel-footer">
+                    <span>Secure</span>
+                    <span>Fast</span>
+                    <span>Confidential</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section class="ks-section">
+        <div class="container">
+            <header class="ks-section-head">
+                <h2 class="ks-section-title">Send Us Your Mission Brief.</h2>
+                <p class="ks-section-sub">Explain your need — we calibrate the best solution.</p>
+            </header>
+
+            <form class="contact-form ks-card" data-reveal>
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label>Your Name</label>
+                        <input type="text" placeholder="Who am I speaking to?" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label>Email</label>
+                        <input type="email" placeholder="Where should I send updates?" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label>Project Type</label>
+                        <select required>
+                            <option value="" selected disabled>Select service</option>
+                            <option>Alternate Number</option>
+                            <option>Script Writing</option>
+                            <option>Video Editing</option>
+                            <option>Website Build</option>
+                            <option>Coding Tool</option>
+                            <option>Shayari Request</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field full">
+                        <label>Message</label>
+                        <textarea placeholder="Explain your idea in short..." required></textarea>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary">Submit Request</button>
+            </form>
+
+            <!-- CONTACT BOXES -->
+            <div class="contact-box-grid">
+                <div class="contact-box ks-card" data-reveal>
+                    <h3>WhatsApp</h3>
+                    <p>Fastest Response</p>
+                    <a href="https://wa.me/17097007361" class="btn btn-ghost">Open Chat</a>
+                </div>
+
+                <div class="contact-box ks-card" data-reveal>
+                    <h3>Email Support</h3>
+                    <p>Detailed Queries</p>
+                    <a href="mailto:admin@kensano.in" class="btn btn-ghost">Send Email</a>
+                </div>
+
+                <div class="contact-box ks-card" data-reveal>
+                    <h3>Instagram</h3>
+                    <p>Check Updates</p>
+                    <a href="https://instagram.com/kensano.in" class="btn btn-ghost">@kensano.in</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="ks-footer">
+        <div class="container ks-footer-inner">
+            <div class="footer-brand">
+                <span class="ks-logo-text">Kensano<span class="ks-logo-dot">.</span></span>
+                <p class="footer-copy">Engineered for the future. Crafted with intention.</p>
+            </div>
+
+            <div class="footer-links">
+                <div>
+                    <h4>Navigate</h4>
+                    <a href="index.html">Home</a>
+                    <a href="services.html">Services</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+
+                <div>
+                    <h4>Support</h4>
+                    <a href="faq.html">FAQ</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="refund.html">Refunds</a>
+                </div>
+            </div>
+
+            <div class="footer-meta">© 2025 Kensano. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script src="js/app.js" defer></script>
+    <script src="js/motion.js" defer></script>
+
 </body>
 </html>
