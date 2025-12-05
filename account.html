@@ -1,30 +1,126 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Your Account — Kensano</title>
-  <link rel="stylesheet" href="css/root.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account — Kensano Control Center</title>
+  <meta name="description" content="User dashboard for Kensano — track orders, downloads, support, and account settings." />
+  <link rel="stylesheet" href="css/root.css" />
 </head>
-<body class="ks-body">
-  <div class="ks-container">
-    <h1>Your Kensano Account</h1>
-    <p>(Frontend shell — connect to auth backend later.)</p>
+<body class="account">
 
-    <section class="glass">
-      <h2>Sign in</h2>
-      <form>
-        <label>Email<input type="email" required></label><br/>
-        <label>Password<input type="password" required></label><br/>
-        <button class="btn-primary">Login</button>
-      </form>
-      <p style="margin-top:8px;color:var(--muted)">Forgot password? This will call a backend endpoint to send reset link.</p>
-    </section>
+  <div class="cursor-glow"></div>
 
-    <section class="glass" style="margin-top:20px">
-      <h2>Your orders</h2>
-      <p>After integration, this area will list all purchases, download links, and invoices.</p>
-    </section>
+  <div class="account-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="account-sidebar">
+      <div class="account-brand">Kensano<span>.</span></div>
+      <nav class="account-nav">
+        <a class="active">Overview</a>
+        <a>Orders</a>
+        <a>Downloads</a>
+        <a>Messages</a>
+        <a>Settings</a>
+        <a>Security</a>
+      </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="account-main">
+
+      <header class="account-header">
+        <div>
+          <h1>Your Digital Command Center.</h1>
+          <p>Track everything from one calm, clean interface.</p>
+        </div>
+        <div class="account-user">
+          <span class="user-avatar">S</span>
+          <span class="user-name">Shin (You)</span>
+        </div>
+      </header>
+
+      <!-- CARDS -->
+      <section class="account-cards">
+        <div class="account-card">
+          <span class="account-card-label">Active Orders</span>
+          <span class="account-card-value">2</span>
+        </div>
+        <div class="account-card">
+          <span class="account-card-label">Completed</span>
+          <span class="account-card-value">7</span>
+        </div>
+        <div class="account-card">
+          <span class="account-card-label">Downloads</span>
+          <span class="account-card-value">9</span>
+        </div>
+        <div class="account-card">
+          <span class="account-card-label">Open Tickets</span>
+          <span class="account-card-value">1</span>
+        </div>
+      </section>
+
+      <!-- ORDERS TABLE -->
+      <section class="account-section">
+        <h2>Recent Orders</h2>
+        <table class="account-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Service</th>
+              <th>Status</th>
+              <th>Last Update</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#2025-07</td>
+              <td>Reel Script Pack</td>
+              <td>In Progress</td>
+              <td>2h ago</td>
+            </tr>
+            <tr>
+              <td>#2025-06</td>
+              <td>Video Edit</td>
+              <td>Delivered</td>
+              <td>1d ago</td>
+            </tr>
+            <tr>
+              <td>#2025-05</td>
+              <td>Alternate Number</td>
+              <td>Delivered</td>
+              <td>3d ago</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- SETTINGS PREVIEW -->
+      <section class="account-section settings-preview">
+        <h2>Profile & Security</h2>
+        <div class="settings-grid">
+          <div class="ks-card">
+            <h3>Profile</h3>
+            <p>Name, email, basic details.</p>
+            <a href="#" class="btn btn-ghost">Edit Profile</a>
+          </div>
+          <div class="ks-card">
+            <h3>Security</h3>
+            <p>Change password, enable alerts.</p>
+            <a href="#" class="btn btn-ghost">Open Security</a>
+          </div>
+          <div class="ks-card">
+            <h3>Sessions</h3>
+            <p>See active devices & logout.</p>
+            <a href="#" class="btn btn-ghost">View Sessions</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
   </div>
+
+  <script src="js/app.js" defer></script>
+  <script src="js/motion.js" defer></script>
 </body>
 </html>
