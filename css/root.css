@@ -1,807 +1,94 @@
-/* ============================================
-   GLOBAL LAYOUT
-============================================ */
-.ks-body {
-  background: radial-gradient(circle at top, #020617 0, #000208 60%);
-  color: #f9fafb;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+/* ======================================================
+   KENSANO — ROOT THEME (Futuristic Neon Dark UI)
+   ====================================================== */
+
+:root {
+  --bg: #04040a;
+  --panel: #0c0c14;
+  --card: #11111c;
+  --text: #e8e8f9;
+  --soft: #9b9bca;
+  --accent: #6d29ff;
+  --accent2: #ff3af5;
+  --glass: rgba(255,255,255,0.03);
+
+  --radius: 16px;
+  --speed: 0.3s;
+  --font-main: "Inter", "Poppins", sans-serif;
 }
 
-.ks-shell {
-  width: min(1180px, 100% - 2.5rem);
-  margin-inline: auto;
-}
-
-/* HEADER */
-
-.ks-header {
-  position: sticky;
-  top: 0;
-  z-index: 40;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.9),
-    rgba(0, 0, 0, 0.78),
-    transparent
-  );
-  border-bottom: 1px solid rgba(148, 163, 255, 0.15);
-}
-
-.ks-header-shell {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-block: 0.75rem;
-}
-
-.ks-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  text-decoration: none;
-}
-
-.ks-logo-avatar {
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle at 0 0, #f97316, #ea580c 40%, #020617 100%);
-  color: #020617;
-  font-size: 0.8rem;
-  font-weight: 600;
-  box-shadow: 0 0 18px rgba(248, 113, 22, 0.9);
-}
-
-.ks-logo-text {
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-size: 0.82rem;
-}
-
-.ks-logo-dot {
-  color: #fb923c;
-}
-
-.ks-nav {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.ks-nav-link {
-  font-size: 0.82rem;
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: rgba(226, 232, 255, 0.75);
-  padding-block: 0.3rem;
-}
-
-.ks-nav-link.is-active {
-  color: #ffffff;
-  border-bottom: 2px solid #fb923c;
-}
-
-.ks-nav-link--muted {
-  opacity: 0.74;
-}
-
-.ks-header-cta {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-/* buttons */
-
-.btn-sm {
-  padding: 0.55rem 1.2rem;
-  font-size: 0.8rem;
-}
-
-.btn-full {
-  width: 100%;
-}
-
-/* ============================================
-   SECTION WRAPPER
-============================================ */
-
-.ks-section {
-  padding-block: 4rem;
-  position: relative;
-}
-
-.ks-section-head {
-  margin-bottom: 2.1rem;
-}
-
-.ks-section-title {
-  font-family: "Georgia", "Times New Roman", serif;
-  font-size: clamp(1.7rem, 3vw, 2.1rem);
-  letter-spacing: 0.02em;
-}
-
-.ks-section-sub {
-  margin-top: 0.6rem;
-  font-size: 0.94rem;
-  color: rgba(209, 213, 219, 0.85);
-}
-
-/* ============================================
-   HERO – uses previous 3D styles + extra details
-============================================ */
-
-/* keep previous .hero, .hero-shell, etc. that I gave you
-   earlier – the new markup will match it.
-   Add these EXTRA cosmetics: */
-
-.hero {
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-grid-overlay {
-  position: absolute;
-  inset: -40%;
-  background-image: linear-gradient(
-      rgba(148, 163, 255, 0.06) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(148, 163, 255, 0.04) 1px,
-      transparent 1px
-    );
-  background-size: 42px 42px;
-  opacity: 0.8;
-  mix-blend-mode: soft-light;
-  pointer-events: none;
-}
-
-.hero-scanline {
-  position: absolute;
-  inset-inline: -20%;
-  top: -40%;
-  height: 220%;
-  background: linear-gradient(
-    to right,
-    transparent 0,
-    rgba(96, 165, 250, 0.06) 20%,
-    rgba(99, 102, 241, 0.18) 50%,
-    rgba(96, 165, 250, 0.06) 80%,
-    transparent 100%
-  );
-  transform: translateX(-60%);
-  filter: blur(1px);
-  animation: heroScan 18s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes heroScan {
-  0% { transform: translateX(-60%); }
-  50% { transform: translateX(40%); }
-  100% { transform: translateX(-60%); }
-}
-
-.hero-tags {
-  margin-top: 1.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  list-style: none;
+* {
+  margin: 0;
   padding: 0;
-  font-size: 0.78rem;
+  box-sizing: border-box;
+  font-family: var(--font-main);
 }
 
-.hero-tags li {
-  border-radius: 999px;
-  padding: 0.35rem 0.9rem;
-  background: rgba(15, 23, 42, 0.85);
-  border: 1px solid rgba(148, 163, 255, 0.35);
+body {
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
 }
 
-/* cursor glow on heading */
-.hero-title:hover {
-  text-shadow:
-    0 0 18px rgba(248, 250, 252, 0.7),
-    0 0 36px rgba(251, 146, 60, 0.85);
+/* Smooth neon glow */
+.neon {
+  text-shadow: 0 0 12px var(--accent);
 }
 
-/* ============================================
-   SERVICES STRIP
-============================================ */
-
-.services-strip {
-  background: radial-gradient(circle at top right, #020617 0, #020617 45%, #020617 70%, #000 100%);
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.6rem;
-}
-
-.service-card {
-  position: relative;
-  padding: 1.4rem 1.4rem 1.6rem;
-  border-radius: 20px;
-  background: radial-gradient(circle at top left, rgba(251, 146, 60, 0.22), transparent 60%),
-              radial-gradient(circle at bottom, rgba(59, 130, 246, 0.18), transparent 65%),
-              rgba(15, 23, 42, 0.96);
-  border: 1px solid rgba(148, 163, 255, 0.3);
-  box-shadow:
-    0 25px 60px rgba(0, 0, 0, 0.9),
-    0 0 0 1px rgba(15, 23, 42, 0.9);
-  transform-style: preserve-3d;
-  transition:
-    transform 170ms ease,
-    box-shadow 170ms ease,
-    border-color 170ms ease;
-}
-
-.service-card:hover {
-  transform: translate3d(0, -10px, 0) rotate3d(-0.3, 0.5, 0, 6deg);
-  box-shadow:
-    0 40px 90px rgba(0, 0, 0, 1),
-    0 0 40px rgba(251, 146, 60, 0.6);
-  border-color: rgba(251, 146, 60, 0.9);
-}
-
-.service-card h3 {
-  margin-top: 0.9rem;
-  font-size: 1rem;
-}
-
-.service-card p {
-  margin-top: 0.4rem;
-  font-size: 0.9rem;
-  color: rgba(226, 232, 255, 0.86);
-}
-
-.service-micro {
-  margin: 0.9rem 0 1rem;
-  padding-left: 1.1rem;
-  font-size: 0.8rem;
-  color: rgba(191, 219, 254, 0.9);
-}
-
-.service-btn {
-  display: inline-flex;
-  padding: 0.45rem 1.1rem;
-  border-radius: 999px;
-  border: 1px solid rgba(248, 250, 252, 0.5);
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+/* Buttons */
+.btn {
+  padding: 10px 22px;
+  border-radius: var(--radius);
+  border: 1px solid var(--accent);
+  cursor: pointer;
+  transition: var(--speed);
   text-decoration: none;
+  font-size: 14px;
+  display: inline-block;
 }
 
-/* simple icon placeholders */
-
-.service-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 14px;
-  background: radial-gradient(circle at 0 0, #f97316, #7c3aed);
-  box-shadow: 0 0 18px rgba(129, 140, 248, 0.9);
-}
-
-/* ============================================
-   ABOUT
-============================================ */
-
-.about {
-  background: radial-gradient(circle at center, #020617 0, #020617 70%, #000 100%);
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.3fr);
-  gap: 2.4rem;
-  align-items: start;
-}
-
-.about-main {
-  font-size: 1.05rem;
-}
-
-.about-body {
-  font-size: 0.94rem;
-  color: rgba(209, 213, 219, 0.9);
-}
-
-.about-pillars {
-  margin-top: 1.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.about-chip {
-  padding: 0.4rem 0.8rem;
-  border-radius: 999px;
-  border: 1px solid rgba(148, 163, 255, 0.7);
-  font-size: 0.78rem;
-}
-
-.about-tagline {
-  margin-top: 1.2rem;
-  font-style: italic;
-  color: rgba(248, 250, 252, 0.9);
-}
-
-.neon-underline {
-  width: 140px;
-  height: 2px;
-  margin-top: 0.6rem;
-  background: linear-gradient(90deg, #fb923c, #a855f7);
-  box-shadow: 0 0 12px rgba(248, 113, 22, 0.9);
-}
-
-/* ============================================
-   BUNDLES
-============================================ */
-
-.bundle-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.6rem;
-}
-
-.bundle-card {
-  position: relative;
-  padding: 1.6rem 1.5rem 1.8rem;
-  border-radius: 20px;
-  background: rgba(15, 23, 42, 0.98);
-  border: 1px solid rgba(148, 163, 255, 0.4);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 1);
-}
-
-.bundle-chip {
-  position: absolute;
-  top: 1.2rem;
-  right: 1.3rem;
-  padding: 0.25rem 0.7rem;
-  border-radius: 999px;
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  border: 1px solid rgba(148, 163, 255, 0.6);
-}
-
-.bundle-chip--hot {
-  border-color: rgba(251, 146, 60, 0.9);
-  color: #fed7aa;
-}
-
-.bundle-list {
-  margin: 1.2rem 0 1.3rem;
-  padding-left: 1.1rem;
-  font-size: 0.88rem;
-}
-
-.bundle-price {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 0.9rem;
-}
-
-/* ============================================
-   WORKFLOW
-============================================ */
-
-.workflow {
-  background: radial-gradient(circle at top, rgba(15, 23, 42, 1) 0, #020617 60%);
-}
-
-.workflow-steps {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.4rem;
-}
-
-.workflow-step {
-  position: relative;
-  padding: 1.3rem 1.2rem 1.5rem;
-  border-radius: 18px;
-  background: rgba(15, 23, 42, 0.95);
-  border: 1px solid rgba(148, 163, 255, 0.4);
-  overflow: hidden;
-}
-
-.workflow-step::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: -20%;
-  width: 2px;
-  height: 140%;
-  background: linear-gradient(#f97316, #a855f7);
-  opacity: 0.7;
-}
-
-.workflow-step-index {
-  font-size: 0.8rem;
-  letter-spacing: 0.27em;
-  text-transform: uppercase;
-  color: rgba(148, 163, 255, 0.9);
-}
-
-/* ============================================
-   PORTFOLIO
-============================================ */
-
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.4rem;
-}
-
-.portfolio-card {
-  position: relative;
-  border-radius: 18px;
-  background: rgba(15, 23, 42, 0.96);
-  overflow: hidden;
-  transform: translateZ(0);
-  transition: transform 160ms ease, box-shadow 160ms ease;
-}
-
-.portfolio-thumb img {
-  width: 100%;
-  display: block;
-  transform: scale(1.03);
-  transition: transform 260ms ease;
-}
-
-.portfolio-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 28px 80px rgba(0, 0, 0, 1);
-}
-
-.portfolio-card:hover .portfolio-thumb img {
-  transform: scale(1.06);
-}
-
-.portfolio-meta {
-  padding: 0.9rem 1rem 1.1rem;
-}
-
-.portfolio-meta h3 {
-  font-size: 0.96rem;
-}
-
-.portfolio-meta p {
-  font-size: 0.84rem;
-  color: rgba(209, 213, 219, 0.92);
-}
-
-.tag {
-  display: inline-flex;
-  padding: 0.2rem 0.6rem;
-  font-size: 0.72rem;
-  border-radius: 999px;
-  border: 1px solid rgba(148, 163, 255, 0.7);
-  margin-bottom: 0.4rem;
-}
-
-.portfolio-cta {
-  margin-top: 1.8rem;
-  text-align: center;
-}
-
-/* ============================================
-   PRICING
-============================================ */
-
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.4rem;
-}
-
-.pricing-card {
-  position: relative;
-  padding: 1.6rem 1.4rem;
-  border-radius: 20px;
-  background: rgba(15, 23, 42, 0.97);
-  border: 1px solid rgba(148, 163, 255, 0.35);
-}
-
-.pricing-card--featured {
-  border-color: rgba(251, 146, 60, 0.95);
-  box-shadow:
-    0 30px 90px rgba(0, 0, 0, 1),
-    0 0 30px rgba(251, 146, 60, 0.7);
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
 }
 
-.pricing-chip {
-  position: absolute;
-  top: 1.1rem;
-  right: 1.3rem;
-  padding: 0.2rem 0.7rem;
-  border-radius: 999px;
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  border: 1px solid rgba(251, 146, 60, 0.9);
+.btn-primary:hover {
+  box-shadow: 0 0 15px var(--accent);
+  transform: translateY(-2px);
 }
 
-.pricing-price {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-block: 0.6rem 1rem;
+.btn-ghost {
+  background: transparent;
+  border-color: var(--accent2);
+  color: var(--accent2);
 }
 
-.pricing-list {
-  font-size: 0.86rem;
-  margin-bottom: 1.2rem;
-  padding-left: 1.1rem;
+.btn-ghost:hover {
+  box-shadow: 0 0 15px var(--accent2);
+  transform: translateY(-2px);
 }
 
-/* ============================================
-   TESTIMONIALS
-============================================ */
-
-.testimonial-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.4rem;
-}
-
-.testimonial-card {
-  padding: 1.4rem 1.3rem 1.5rem;
-  border-radius: 20px;
-  background: rgba(15, 23, 42, 0.96);
-  border: 1px solid rgba(148, 163, 255, 0.4);
-}
-
-.testimonial-text {
-  font-size: 0.94rem;
-  color: rgba(226, 232, 255, 0.94);
-}
-
-.testimonial-meta {
-  margin-top: 0.8rem;
-  font-size: 0.8rem;
-  color: rgba(156, 163, 175, 0.95);
-}
-
-/* ============================================
-   FAQ
-============================================ */
-
-.faq-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.1rem;
-}
-
-.faq-item {
-  padding: 1.1rem 1rem 1.2rem;
-  border-radius: 16px;
-  background: rgba(15, 23, 42, 0.95);
-}
-
-.faq-item h3 {
-  font-size: 0.96rem;
-}
-
-.faq-item p {
-  font-size: 0.86rem;
-  color: rgba(209, 213, 219, 0.96);
-}
-
-.faq-cta {
-  margin-top: 1.4rem;
-}
-
-/* ============================================
-   FINAL CTA
-============================================ */
-
-.final-cta {
-  background: radial-gradient(circle at center, #0f172a 0, #020617 70%);
-}
-
-.final-cta-shell {
-  display: flex;
-  justify-content: space-between;
-  gap: 2rem;
-  align-items: center;
-}
-
-.final-cta-title {
-  font-size: clamp(1.6rem, 2.6vw, 2rem);
-}
-
-.final-cta-sub {
-  margin-top: 0.4rem;
-  font-size: 0.92rem;
-  color: rgba(209, 213, 219, 0.9);
-}
-
-.final-cta-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-}
-
-/* ============================================
-   FOOTER
-============================================ */
-
-.ks-footer {
-  border-top: 1px solid rgba(30, 64, 175, 0.6);
-  background: radial-gradient(circle at top, #020617 0, #000 80%);
-  padding-block: 2.4rem 2rem;
-  font-size: 0.82rem;
-}
-
-.ks-footer-shell {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.4fr);
-  gap: 2rem;
-}
-
-.ks-footer-links {
-  display: flex;
-  gap: 2.5rem;
-}
-
-.ks-footer-links h4 {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  margin-bottom: 0.5rem;
-}
-
-.ks-footer-links a {
-  display: block;
-  margin-bottom: 0.2rem;
-  color: rgba(209, 213, 219, 0.85);
-  text-decoration: none;
-  font-size: 0.8rem;
-}
-
-.ks-footer-meta {
-  grid-column: 1 / -1;
-  margin-top: 1.2rem;
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid rgba(51, 65, 85, 0.9);
-  padding-top: 0.7rem;
-  color: rgba(148, 163, 184, 0.96);
-}
-
-/* ============================================
-   SERVICES PAGE
-============================================ */
-
-.sv-intro-body {
-  margin-top: 0.7rem;
-  font-size: 0.94rem;
-  color: rgba(209, 213, 219, 0.9);
-}
-
-.sv-grid-layout {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.8rem;
-}
-
-.sv-card {
-  padding: 1.6rem 1.5rem 1.8rem;
-  border-radius: 20px;
-  background: radial-gradient(circle at top left, rgba(251, 146, 60, 0.17), transparent 60%),
-              rgba(15, 23, 42, 0.98);
-  border: 1px solid rgba(148, 163, 255, 0.45);
-  box-shadow: 0 26px 80px rgba(0, 0, 0, 1);
-}
-
-.sv-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(148, 163, 255, 0.95);
-}
-
-.sv-body {
-  margin-top: 0.55rem;
-  font-size: 0.92rem;
-  color: rgba(226, 232, 240, 0.92);
-}
-
-.sv-list {
-  margin: 0.55rem 0 0.9rem;
-  padding-left: 1.15rem;
-  font-size: 0.85rem;
-  color: rgba(209, 213, 219, 0.95);
-}
-
-.sv-disclaimer {
-  margin-top: 0.7rem;
-  font-size: 0.78rem;
-  color: rgba(248, 250, 252, 0.7);
-}
-
-.sv-shayari-sample {
-  margin: 0.6rem 0 0.9rem;
-  font-size: 0.86rem;
-  font-style: italic;
-  color: rgba(243, 244, 246, 0.95);
+/* Card */
+.ks-card {
+  background: var(--card);
+  padding: 25px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: var(--speed);
 }
 
-.sv-final {
-  padding-top: 2.4rem;
+.ks-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px var(--accent);
 }
-
-/* ============================================
-   RESPONSIVE
-============================================ */
-
-@media (max-width: 1024px) {
-  .services-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 
-  .workflow-steps {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .portfolio-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .pricing-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .sv-grid-layout {
-    grid-template-columns: minmax(0, 1fr);
-  }
+/* Section spacing */
+.ks-section {
+  padding: 90px 0;
 }
-
-@media (max-width: 768px) {
-  .ks-header-shell {
-    flex-wrap: wrap;
-    gap: 0.8rem;
-  }
-
-  .ks-nav {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .hero-shell {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .services-grid,
-  .workflow-steps,
-  .portfolio-grid,
-  .pricing-grid,
-  .testimonial-grid,
-  .faq-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .bundle-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .ks-footer-shell {
-    grid-template-columns: minmax(0, 1fr);
-  }
 
-  .final-cta-shell {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+.container {
+  width: 92%;
+  max-width: 1230px;
+  margin: auto;
 }
