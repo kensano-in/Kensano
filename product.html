@@ -1,36 +1,127 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Products — Kensano</title>
-  <link rel="stylesheet" href="css/root.css">
-  <script defer src="js/motion.js"></script>
-  <script defer src="js/app.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Alternate Number — Kensano</title>
+
+    <meta name="description"
+        content="Premium alternate WhatsApp/Telegram numbers — secure, private, verified, high-quality." />
+
+    <link rel="stylesheet" href="css/root.css">
 </head>
-<body class="ks-body">
-  <header class="ks-header ks-simple">
-    <div class="ks-container">
-      <a href="/" class="brand">Kensano</a><a href="/" class="btn-ghost">Home</a>
-    </div>
-  </header>
 
-  <main class="ks-container">
-    <h2>Products</h2>
-    <div id="product-list" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px"></div>
+<body>
 
-    <section style="margin-top:40px">
-      <h3>How purchase works</h3>
-      <ol>
-        <li>Select product → Buy → Checkout (payment via Stripe / Razorpay placeholder)</li>
-        <li>Product delivered by secure link / internal dashboard</li>
-        <li>Support via assistant / contact</li>
-      </ol>
+    <div class="cursor-glow"></div>
+    <img src="assets/shards/shard-orange.png" class="shard shard-left">
+    <img src="assets/shards/shard-purple.png" class="shard shard-right">
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container site-header-inner">
+            <div class="brand">
+                <div class="brand-mark">K</div>
+                <div class="brand-text">KENSANO<span class="brand-dot">.</span></div>
+            </div>
+
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+
+            <div class="nav-cta">
+                <a href="account.html" class="btn btn-ghost">Dashboard</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- PRODUCT -->
+    <section class="ks-section">
+        <div class="container product-layout">
+
+            <!-- IMAGE PANEL -->
+            <div class="product-preview ks-card" data-reveal>
+                <img src="assets/products/number-premium.jpg" alt="" class="product-img">
+                <div class="product-tag">Premium · WhatsApp Ready</div>
+            </div>
+
+            <!-- CONTENT PANEL -->
+            <div class="product-info" data-reveal>
+
+                <h1 class="product-title">Alternate WhatsApp Number — Premium Identity Layer</h1>
+
+                <p class="product-desc">
+                    A fully verified alternate number ideal for business, communication silos,
+                    outreach, or backup identity layers.  
+                    Clean communication. Zero leaks. Pure privacy.
+                </p>
+
+                <ul class="product-features">
+                    <li>Region Options</li>
+                    <li>Instant Delivery (10–20 minutes)</li>
+                    <li>Replacement If Dead</li>
+                    <li>Confidential Processing</li>
+                    <li>WhatsApp-Ready</li>
+                </ul>
+
+                <div class="product-price">₹799</div>
+
+                <div class="product-cta">
+                    <a href="contact.html" class="btn btn-primary">Order Now</a>
+                    <a href="services.html" class="btn btn-ghost">Back to Services</a>
+                </div>
+
+                <div class="trust-bar">
+                    <span>Encrypted Delivery</span>
+                    <span>Verified Quality</span>
+                    <span>Zero Data Leakage</span>
+                </div>
+
+            </div>
+
+        </div>
     </section>
-  </main>
 
-  <footer class="ks-footer">
-    <div class="ks-container">© Kensano</div>
-  </footer>
+    <!-- FOOTER -->
+    <footer class="ks-footer">
+        <div class="container ks-footer-inner">
+            <div class="footer-brand">
+                <span class="ks-logo-text">Kensano<span class="ks-logo-dot">.</span></span>
+                <p class="footer-copy">Engineered for the future. Crafted with intention.</p>
+            </div>
+
+            <div class="footer-links">
+                <div>
+                    <h4>Navigate</h4>
+                    <a href="index.html">Home</a>
+                    <a href="services.html">Services</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+
+                <div>
+                    <h4>Support</h4>
+                    <a href="faq.html">FAQ</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="refund.html">Refunds</a>
+                </div>
+            </div>
+
+            <div class="footer-meta">© 2025 Kensano. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script src="js/app.js" defer></script>
+    <script src="js/motion.js" defer></script>
+
 </body>
+
 </html>
