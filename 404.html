@@ -3,25 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>404 — Lost in the Void</title>
+  <title>404 — Timeline Not Found | Kensano</title>
   <meta name="description" content="The page you’re looking for does not exist in this timeline." />
   <link rel="stylesheet" href="css/root.css" />
 </head>
-<body class="error-404">
+
+<body class="error-page">
+
+  <!-- global cursor glow -->
   <div class="cursor-glow"></div>
+
+  <!-- holo grid background -->
+  <div class="error-grid"></div>
+
+  <!-- floating shards (reuse if you want, optional) -->
+  <img src="assets/shards/shard-orange.png" class="shard shard-left" alt="">
+  <img src="assets/shards/shard-purple.png" class="shard shard-right" alt="">
 
   <section class="ks-section error-section">
     <div class="container error-shell">
-      <div class="error-code">404</div>
-      <h1 class="error-title">Lost in the Void.</h1>
-      <p class="error-sub">
-        The page you’re searching for doesn’t exist in this timeline, or may have been moved.
-      </p>
 
-      <div class="error-actions">
-        <a href="index.html" class="btn btn-primary">Return Home</a>
-        <a href="contact.html" class="btn btn-ghost">Contact Support</a>
+      <!-- ORBIT MODULE -->
+      <div class="error-orbit" data-reveal>
+        <div class="error-orbit-ring"></div>
+        <div class="error-orbit-core">
+          <span class="error-orbit-label">SYSTEM CODE</span>
+          <span class="error-orbit-code">404</span>
+          <span class="error-orbit-sub">TIMELINE NOT FOUND</span>
+        </div>
+        <div class="error-orbit-glow"></div>
       </div>
+
+      <!-- COPY + ACTIONS -->
+      <div class="error-copy" data-reveal>
+        <h1 class="error-title">You Slipped Outside The Path.</h1>
+        <p class="error-sub">
+          The interface you called doesn’t exist in this branch of reality, or it has been
+          archived into a different node.
+        </p>
+
+        <ul class="error-meta-list">
+          <li>Requested route: <span class="error-pill">Unknown / Detached</span></li>
+          <li>Status: <span class="error-pill">404 — Offline Fragment</span></li>
+          <li>Suggested action: <span class="error-pill">Return to a stable module</span></li>
+        </ul>
+
+        <div class="error-actions">
+          <a href="index.html" class="btn btn-primary">Return to Home Grid</a>
+          <a href="contact.html" class="btn btn-ghost">Ping Support Module</a>
+        </div>
+
+        <p class="error-micro">
+          If you believe this route should exist, send us the broken link and we’ll patch the system.
+        </p>
+      </div>
+
     </div>
   </section>
 
