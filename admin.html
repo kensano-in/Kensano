@@ -1,41 +1,121 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Admin Dashboard — Kensano</title>
-  <link rel="stylesheet" href="css/root.css">
-  <script>
-    // note: this admin page is frontend-only. For solid admin you must add server-side auth + endpoints (see README).
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin HQ — Kensano</title>
+
+    <meta name="description" content="Admin dashboard for Kensano — manage orders, users, products, and analytics." />
+
+    <link rel="stylesheet" href="css/root.css">
 </head>
-<body class="ks-body">
-  <div class="ks-container">
-    <h2>Admin Dashboard (Demo mode)</h2>
-    <div style="display:flex;gap:16px">
-      <div style="flex:1">
-        <div class="glass">
-          <h4>Orders</h4>
-          <ul id="admin-orders">
-            <li>No orders (demo)</li>
-          </ul>
-        </div>
-        <div class="glass" style="margin-top:12px">
-          <h4>Add Product</h4>
-          <form id="admin-add">
-            <label>Title<input name="title"></label><br/>
-            <label>Price<input name="price"></label><br/>
-            <button type="submit" class="btn-sm btn-primary">Add</button>
-          </form>
-        </div>
-      </div>
-      <aside style="width:320px">
-        <div class="glass">
-          <h4>Site settings</h4>
-          <p>Domain: <strong>kensano.in</strong></p>
-          <p>Payment keys: <em>not set</em></p>
-        </div>
-      </aside>
+
+<body class="admin">
+
+    <!-- BACKGROUND -->
+    <div class="cursor-glow"></div>
+
+    <div class="admin-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar">
+            <div class="admin-brand">Kensano Admin</div>
+
+            <nav class="admin-nav">
+                <a class="active">Dashboard</a>
+                <a>Orders</a>
+                <a>Users</a>
+                <a>Products</a>
+                <a>Refund Center</a>
+                <a>Analytics</a>
+                <a>Settings</a>
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="admin-main">
+
+            <header class="admin-header">
+                <h1>Admin HQ — System Overview</h1>
+                <div class="admin-user">Admin</div>
+            </header>
+
+            <!-- DASHBOARD CARDS -->
+            <section class="admin-cards">
+                <div class="admin-card">
+                    <span class="admin-card-label">Total Sales</span>
+                    <span class="admin-card-value">₹74,900</span>
+                </div>
+
+                <div class="admin-card">
+                    <span class="admin-card-label">Pending Orders</span>
+                    <span class="admin-card-value">14</span>
+                </div>
+
+                <div class="admin-card">
+                    <span class="admin-card-label">Active Users</span>
+                    <span class="admin-card-value">421</span>
+                </div>
+
+                <div class="admin-card">
+                    <span class="admin-card-label">Refund Requests</span>
+                    <span class="admin-card-value">3</span>
+                </div>
+            </section>
+
+            <!-- ORDER TABLE -->
+            <section class="admin-table-section">
+                <h2>Recent Orders</h2>
+
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User</th>
+                            <th>Service</th>
+                            <th>Status</th>
+                            <th>ETA</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>#1023</td>
+                            <td>Shin</td>
+                            <td>Alternate Number</td>
+                            <td>Processing</td>
+                            <td>2 hrs</td>
+                        </tr>
+
+                        <tr>
+                            <td>#1022</td>
+                            <td>Ken</td>
+                            <td>Video Edit</td>
+                            <td>Delivered</td>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <td>#1021</td>
+                            <td>Riya</td>
+                            <td>Script Pack</td>
+                            <td>Pending</td>
+                            <td>6 hrs</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </section>
+
+        </main>
+
     </div>
-  </div>
+
+    <script src="js/app.js" defer></script>
+    <script src="js/motion.js" defer></script>
+
 </body>
+
 </html>
