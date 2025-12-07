@@ -1,244 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kensano — SHINKEN Protocol</title>
 
-    <title>Kensano — Futuristic Digital Services</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-    <!-- Meta -->
-    <meta name="description" content="Alternate numbers, scripts, edits, websites, coding & shayari — engineered with precision." />
-    <meta property="og:title" content="Kensano — Crafted Digital Futures" />
-    <meta property="og:type" content="website" />
-    <meta property="og:description" content="A next-gen digital forge delivering futuristic services with high-accuracy craftsmanship." />
-    <meta name="theme-color" content="#6d29ff" />
+  <!-- Core styles -->
+  <link rel="stylesheet" href="css/root.css" />
+  <link rel="stylesheet" href="css/hero.css" />
 
-    <!-- Favicon -->
-    <link rel="icon" href="assets/3d/kensano-logo.png" />
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
-    <!-- Root CSS -->
-    <link rel="stylesheet" href="css/root.css" />
+  <!-- THREE.JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r150/three.min.js"></script>
 </head>
 
 <body>
+  <!-- BOOT SCREEN -->
+  <div id="boot">
+    <div class="boot-text">INITIALIZING SHINKEN CORE...</div>
+    <div class="scanline"></div>
+  </div>
 
-    <!-- BACKGROUND GLASS + SHARDS -->
-    <div class="cursor-glow"></div>
-    <img src="assets/shards/shard-orange.png" class="shard shard-left" alt="" />
-    <img src="assets/shards/shard-purple.png" class="shard shard-right" alt="" />
+  <!-- OPTIONAL TOP NAV (links to your existing pages) -->
+  <header class="top-nav">
+    <div class="nav-inner">
+      <div class="nav-logo">KENSANO<span>.in</span></div>
 
-    <!-- HEADER / NAV -->
-    <header class="site-header">
-        <div class="container site-header-inner">
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="product.html">Products</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
 
-            <div class="brand">
-                <div class="brand-mark">K</div>
-                <div class="brand-text">KENSANO<span class="brand-dot">.</span></div>
-            </div>
+      <div class="nav-cta">
+        <a href="account.html" class="nav-btn">Account</a>
+      </div>
+    </div>
+  </header>
 
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="services.html">Services</a>
-                <a href="portfolio.html">Portfolio</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="contact.html">Contact</a>
-            </nav>
+  <!-- HERO SECTION -->
+  <section id="hero">
+    <!-- 3D Canvas -->
+    <div id="canvas-container"></div>
 
-            <div class="nav-cta">
-                <a href="account.html" class="btn btn-ghost">Dashboard</a>
-            </div>
+    <!-- Volumetric glow -->
+    <div class="volumetric-lights"></div>
 
-            <button class="nav-toggle" aria-label="Toggle Menu">
-                <span></span><span></span><span></span>
-            </button>
+    <!-- Floating HUD shards -->
+    <div class="shards"></div>
 
+    <!-- Cipher layer -->
+    <div class="cipher-layer"></div>
+
+    <!-- Samurai mask hologram -->
+    <div class="mask-holo"></div>
+
+    <!-- HUD / TEXT -->
+    <div class="hud">
+      <div class="hud-left">
+        <span>CHANNEL: ENCRYPTED</span>
+        <span>INTEGRITY: 97%</span>
+      </div>
+
+      <div class="center">
+        <h1 class="title">SHINKEN</h1>
+        <p class="subtitle">INTELLIGENCE FRAMEWORK — PROTOCOL ORIGIN</p>
+
+        <div class="cta-box">
+          <a href="services.html" class="cta primary">ENTER SYSTEM</a>
+          <a href="contact.html" class="cta ghost">TALK TO OPS</a>
         </div>
-    </header>
+      </div>
 
-    <!-- ===============================
-         HERO SECTION
-    ================================ -->
-    <section class="hero" id="home">
-        <div class="container hero-inner">
+      <div class="hud-right">
+        <span>CORE TEMP: 22.4°C</span>
+        <span>STATUS: ACTIVE</span>
+      </div>
+    </div>
+  </section>
 
-            <!-- LEFT BLOCK -->
-            <div data-reveal>
-                <div class="hero-kicker">Next-Gen Digital Engineering</div>
+  <!-- Your existing scripts can still run if needed -->
+  <!-- <script src="js/app.js"></script> -->
+  <!-- <script src="js/motion.js"></script> -->
 
-                <h1 class="hero-title">
-                    Crafting Digital Realities.<br />
-                    <span style="color:var(--accent);">One Precision System at a Time.</span>
-                </h1>
-
-                <p class="hero-subtitle">
-                    A next-generation digital forge where ideas evolve into living, breathing systems.
-                    From alternate identities to scripts, edits, websites, code, and crafted emotion—
-                    every output feels engineered, not produced.
-                </p>
-
-                <p class="hero-micro">
-                    • AI-enhanced workflow<br />
-                    • Confidential handling<br />
-                    • Ultra-fast delivery engine<br />
-                    • Premium sci-fi craftsmanship
-                </p>
-
-                <div class="hero-cta-row">
-                    <a href="services.html" class="btn btn-primary">Begin Your Journey</a>
-                    <a href="services.html" class="btn btn-ghost">Explore Services</a>
-                </div>
-
-                <div class="hero-tags">
-                    <span class="hero-tag">Encrypted Delivery</span>
-                    <span class="hero-tag">High-Accuracy Craft</span>
-                    <span class="hero-tag">Human + AI Hybrid</span>
-                </div>
-            </div>
-
-            <!-- RIGHT PANEL -->
-            <div class="hero-panel" data-reveal>
-                <div class="hero-panel-header">
-                    <div class="hero-chip">SYSTEM MODULE</div>
-                    <span>01</span>
-                </div>
-
-                <h3 class="hero-panel-title">The Kensano Engine</h3>
-
-                <p class="hero-panel-copy">
-                    Precision-built digital services infused with sci-fi visual intelligence and cinematic design
-                    philosophy.
-                </p>
-
-                <div class="hero-panel-footer">
-                    <div class="hero-tag-row">
-                        <span>3D UI</span>
-                        <span>Holograms</span>
-                        <span>Neon Grid</span>
-                    </div>
-
-                    <a href="services.html" class="btn btn-primary" style="font-size:11px;">Access</a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ===============================
-         SERVICES STRIP
-    ================================ -->
-    <section class="ks-section services" id="services">
-        <div class="container">
-
-            <header class="ks-section-head">
-                <h2 class="ks-section-title">What We Build For You.</h2>
-                <p class="ks-section-sub">Each service is engineered like a digital weapon — precise, reliable,
-                    future-ready.</p>
-            </header>
-
-            <div class="ks-grid service-grid">
-
-                <!-- SERVICE CARD 01 -->
-                <article class="ks-card service-card" data-reveal>
-                    <img src="assets/icons/number.svg" class="service-icon" alt="Alternate Numbers">
-                    <h3>Alternate Identities. Full Privacy.</h3>
-                    <p>Secure, verified WhatsApp/Telegram numbers for business & clean communication silos.</p>
-                    <ul>
-                        <li>Region Options</li>
-                        <li>High Validity</li>
-                        <li>Confidential Delivery</li>
-                    </ul>
-                    <a href="product.html" class="btn btn-primary">View Details</a>
-                </article>
-
-                <!-- SERVICE CARD 02 -->
-                <article class="ks-card service-card" data-reveal>
-                    <img src="assets/icons/script.svg" class="service-icon" alt="Script Writing">
-                    <h3>Words That Command Attention.</h3>
-                    <p>Reels, ads & narratives crafted with psychological hooks and retention logic.</p>
-                    <ul>
-                        <li>Hook Architecture</li>
-                        <li>Scene Sequencing</li>
-                        <li>Retention Logic</li>
-                    </ul>
-                    <a href="services.html#scripts" class="btn btn-primary">Explore Scripts</a>
-                </article>
-
-                <!-- SERVICE CARD 03 -->
-                <article class="ks-card service-card" data-reveal>
-                    <img src="assets/icons/edit.svg" class="service-icon" alt="Video Editing">
-                    <h3>Visual Engineering at Warp Speed.</h3>
-                    <p>Cinematic pacing, motion design, color science & storytelling flow.</p>
-                    <ul>
-                        <li>Captions + SFX</li>
-                        <li>Color Calibration</li>
-                        <li>Rhythmic Editing</li>
-                    </ul>
-                    <a href="services.html#editing" class="btn btn-primary">Explore Editing</a>
-                </article>
-
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ===============================
-         FINAL CTA
-    ================================ -->
-    <section class="ks-section final-cta">
-        <div class="container">
-
-            <h2 class="final-title">Ready to Upgrade Your Digital Identity?</h2>
-            <p class="final-sub">Begin a journey of futuristic precision & premium craftsmanship.</p>
-
-            <div class="final-cta-row">
-                <a href="services.html" class="btn btn-primary">Start Now</a>
-                <a href="contact.html" class="btn btn-ghost">Contact Support</a>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ===============================
-         FOOTER
-    ================================ -->
-    <footer class="ks-footer">
-        <div class="container ks-footer-inner">
-
-            <div class="footer-brand">
-                <span class="ks-logo-text">Kensano<span class="ks-logo-dot">.</span></span>
-                <p class="footer-copy">Engineered for the future. Crafted with intention.</p>
-            </div>
-
-            <div class="footer-links">
-                <div>
-                    <h4>Navigate</h4>
-                    <a href="index.html">Home</a>
-                    <a href="services.html">Services</a>
-                    <a href="portfolio.html">Portfolio</a>
-                    <a href="pricing.html">Pricing</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-
-                <div>
-                    <h4>Support</h4>
-                    <a href="faq.html">FAQ</a>
-                    <a href="terms.html">Terms & Conditions</a>
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="refund.html">Refund Policy</a>
-                </div>
-            </div>
-
-            <div class="footer-meta">
-                © 2025 Kensano. All rights reserved.
-            </div>
-        </div>
-    </footer>
-
-    <!-- JS -->
-    <script src="js/app.js" defer></script>
-    <script src="js/motion.js" defer></script>
-
+  <!-- Hero engine -->
+  <script src="js/hero-engine.js"></script>
 </body>
-
 </html>
