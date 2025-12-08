@@ -6,7 +6,7 @@
   --bg-3: #11212d;
   --bg-4: #051f20;
 
-  /* TEAL / GREEN PALETTE */
+  /* TEAL / GREEN PALETTE (from your refs) */
   --teal-deep: #0b2b26;
   --teal-mid: #163832;
   --teal-soft: #235347;
@@ -35,12 +35,14 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html,
 body {
-  margin: 0;
-  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
 body {
@@ -55,7 +57,7 @@ body {
 
 /* Global links */
 a {
-  color: var(--mint);
+  color: var(--mint-mid);
   text-decoration: none;
 }
 a:hover {
@@ -65,7 +67,7 @@ a:hover {
 /* Layout helpers for inner pages */
 .page {
   min-height: 100vh;
-  padding: 96px 20px 40px;
+  padding: 96px 20px 40px; /* space for nav */
 }
 
 .container {
@@ -144,7 +146,8 @@ a:hover {
   background: linear-gradient(90deg, var(--mint-mid), var(--mint));
   transition: width 0.25s ease;
 }
-.nav-links a:hover::after {
+.nav-links a:hover::after,
+.nav-links a.active::after {
   width: 100%;
 }
 
@@ -167,7 +170,7 @@ a:hover {
   );
 }
 
-/* Inner pages basic typography */
+/* inner page typography */
 .page h1 {
   font-family: var(--title-font);
   letter-spacing: 0.32em;
@@ -175,14 +178,18 @@ a:hover {
   font-size: 1.6rem;
   margin-bottom: 20px;
 }
-
+.page h2 {
+  font-size: 1.1rem;
+  margin: 16px 0 6px;
+}
 .page p {
   color: rgba(226, 232, 235, 0.9);
   line-height: 1.6;
   font-size: 0.95rem;
+  margin-bottom: 10px;
 }
 
-/* Simple footer suggestion (you can reuse on all pages) */
+/* footer */
 .footer {
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding: 16px 20px 26px;
@@ -199,7 +206,17 @@ a:hover {
   flex-wrap: wrap;
 }
 
-/* responsive nav simplification */
+/* simple list */
+ul.clean {
+  list-style: none;
+  margin-top: 10px;
+}
+ul.clean li {
+  margin-bottom: 6px;
+  color: rgba(222, 232, 236, 0.9);
+}
+
+/* responsive nav */
 @media (max-width: 768px) {
   .nav-inner {
     padding: 10px 14px;
