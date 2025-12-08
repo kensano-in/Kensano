@@ -1,288 +1,298 @@
-/* BOOT SCREEN */
-#boot {
-  position: fixed;
-  inset: 0;
-  background: #000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  transition: opacity 0.6s ease;
-}
+// =========================
+// BOOT SEQUENCE
+// =========================
+window.addEventListener("load", () => {
+  const boot = document.getElementById("boot");
+  if (!boot) return;
+  setTimeout(() => {
+    boot.style.opacity = "0";
+    setTimeout(() => boot.remove(), 650);
+  }, 1700);
+});
 
-.boot-text {
-  color: var(--white);
-  letter-spacing: 3px;
-  font-size: 0.9rem;
-  opacity: 0.9;
-}
+// =========================
+// THREE.JS CORE SETUP
+// =========================
+const scene = new THREE.Scene();
+scene.fog = new THREE.Fog(0x02070a, 6, 40);
 
-.scanline {
-  width: 100vw;
-  height: 2px;
-  margin-top: 20px;
-  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-  animation: scan 1.3s infinite linear;
-}
+const camera = new THREE.PerspectiveCamera(
+  60,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  100
+);
+camera.position.set(0, 1.3, 5);
 
-@keyframes scan {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+document.getElementById("canvas-container").appendChild(renderer.domElement);
 
-/* HERO BASE */
-#hero {
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  padding-top: 64px; /* nav ki height */
-}
+// Resize
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
 
-#canvas-container {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
+// =========================
+// LIGHTING
+// =========================
+const ambient = new THREE.AmbientLight(0xffffff, 0.22);
+scene.add(ambient);
 
-/* Volumetric light */
-.volumetric-lights {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background:
-    radial-gradient(circle at 50% 18%, rgba(212, 165, 81, 0.12), transparent 55%),
-    radial-gradient(circle at 12% 82%, rgba(76, 201, 240, 0.14), transparent 60%);
-  mix-blend-mode: screen;
-  filter: blur(40px);
-  animation: breatheLight 9s ease-in-out infinite;
-}
+const mintLight = new THREE.PointLight(0x8eb69b, 1.4, 25);
+mintLight.position.set(2.4, 3.2, 4);
+scene.add(mintLight);
 
-@keyframes breatheLight {
-  0% {
-    opacity: 0.18;
-  }
-  50% {
-    opacity: 0.42;
-  }
-  100% {
-    opacity: 0.18;
-  }
-}
+const tealLight = new THREE.PointLight(0x163832, 1.4, 25);
+tealLight.position.set(-3.2, -2.4, 3.2);
+scene.add(tealLight);
 
-/* HUD LAYER */
-.hud {
-  position: relative;
-  z-index: 6;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 32px 40px;
-  color: var(--white);
-  pointer-events: none;
-}
+const backLight = new THREE.PointLight(0xffffff, 0.3, 30);
+backLight.position.set(0, 6, -6);
+scene.add(backLight);
 
-.hud-left,
-.hud-right {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  opacity: 0.5;
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
+// =========================
+// FLOOR GRID
+// =========================
+const floorGeo = new THREE.PlaneGeometry(40, 40, 40, 40);
+const floorMat = new THREE.MeshBasicMaterial({
+  color: 0x06141b,
+  wireframe: true,
+  transparent: true,
+  opacity: 0.18
+});
+const floor = new THREE.Mesh(floorGeo, floorMat);
+floor.rotation.x = -Math.PI / 2;
+floor.position.y = -2.5;
+scene.add(floor);
 
-.center {
-  text-align: center;
-  margin-top: 14vh;
-  pointer-events: auto;
-}
+// =========================
+// CORE OBJECT GROUP
+// =========================
+const coreGroup = new THREE.Group();
+scene.add(coreGroup);
 
-.title {
-  font-family: var(--title-font);
-  font-size: clamp(2.8rem, 5vw, 4.2rem);
-  letter-spacing: 0.7em;
-  padding-left: 0.7em;
-  color: var(--white);
-  margin: 0 0 8px;
-}
+// Hex cube (Kensano Core)
+const cube = new THREE.Mesh(
+  new THREE.BoxGeometry(1, 1, 1),
+  new THREE.MeshStandardMaterial({
+    color: 0x050f12,
+    metalness: 0.9,
+    roughness: 0.18,
+    emissive: 0x163832,
+    emissiveIntensity: 0.12
+  })
+);
+coreGroup.add(cube);
 
-.subtitle {
-  letter-spacing: 0.35em;
-  padding-left: 0.35em;
-  color: var(--cyan);
-  margin: 0 0 40px;
-  font-size: 0.9rem;
-}
+// Energy orb
+const orb = new THREE.Mesh(
+  new THREE.SphereGeometry(0.55, 64, 64),
+  new THREE.MeshStandardMaterial({
+    color: 0x8eb69b,
+    transparent: true,
+    opacity: 0.17,
+    roughness: 0,
+    metalness: 1,
+    emissive: 0x8eb69b,
+    emissiveIntensity: 0.25
+  })
+);
+coreGroup.add(orb);
 
-.cta-box {
-  display: flex;
-  gap: 22px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
+// Inner core sphere
+const innerSphere = new THREE.Mesh(
+  new THREE.SphereGeometry(0.26, 64, 64),
+  new THREE.MeshStandardMaterial({
+    color: 0xffffff,
+    metalness: 1,
+    roughness: 0.06
+  })
+);
+coreGroup.add(innerSphere);
 
-/* CTA buttons */
-.cta {
-  position: relative;
-  padding: 13px 34px;
-  border-radius: 999px;
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.24em;
-  font-size: 0.75rem;
-  border: 1px solid var(--glass-border);
-  background:
-    radial-gradient(circle at top left, rgba(208, 166, 81, 0.15), transparent 60%),
-    radial-gradient(circle at bottom right, rgba(76, 201, 240, 0.18), transparent 60%),
-    rgba(10, 10, 14, 0.9);
-  color: var(--white);
-  overflow: hidden;
-  backdrop-filter: blur(22px);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03), 0 18px 40px rgba(0, 0, 0, 0.6);
-  transition: transform 0.2s ease, box-shadow 0.3s ease, border-color 0.2s ease,
-    background 0.25s ease;
-}
+// Energy ring
+const ring = new THREE.Mesh(
+  new THREE.TorusGeometry(1.15, 0.02, 16, 80),
+  new THREE.MeshBasicMaterial({
+    color: 0x8eb69b,
+    transparent: true,
+    opacity: 0.32
+  })
+);
+ring.rotation.x = Math.PI / 2;
+coreGroup.add(ring);
 
-.cta::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.4) 40%,
-    transparent 80%
+// =========================
+// PARTICLE VORTEX RING
+// =========================
+const particles = new THREE.Group();
+scene.add(particles);
+
+for (let i = 0; i < 140; i++) {
+  const particle = new THREE.Mesh(
+    new THREE.SphereGeometry(0.03, 8, 8),
+    new THREE.MeshBasicMaterial({ color: 0x8eb69b })
   );
-  transform: translateX(-120%);
-  transition: transform 0.5s ease;
+  particles.add(particle);
 }
 
-.cta.primary {
-  border-color: var(--gold);
-}
+function animateParticles(time) {
+  const children = particles.children;
+  const count = children.length;
 
-.cta.ghost {
-  border-color: rgba(76, 201, 240, 0.6);
-}
+  for (let i = 0; i < count; i++) {
+    const p = children[i];
+    const angle = time * 0.4 + i * 0.18;
+    const radius = 2.1 + Math.sin(time * 0.6 + i * 0.25) * 0.25;
 
-.cta:hover {
-  transform: translateY(-2px) scale(1.015);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75);
-}
-
-.cta:hover::before {
-  transform: translateX(120%);
-}
-
-.cta.ghost:hover {
-  color: var(--cyan);
-}
-
-/* FLOATING SHARDS */
-.shards {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 3;
-}
-
-/* MASK HOLOGRAM */
-.mask-holo {
-  position: absolute;
-  width: 260px;
-  height: 260px;
-  top: 52%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: url("../img/mask-outline.png") center/contain no-repeat;
-  opacity: 0.06;
-  z-index: 4;
-  animation: maskPulse 7s infinite ease-in-out;
-  pointer-events: none;
-  mix-blend-mode: screen;
-}
-
-@keyframes maskPulse {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0.035;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.04);
-    opacity: 0.09;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0.035;
+    p.position.x = Math.cos(angle) * radius;
+    p.position.z = Math.sin(angle) * radius;
+    p.position.y = Math.sin(time * 0.9 + i * 0.12) * 0.18;
   }
 }
 
-/* CIPHER LAYER */
-.cipher-layer {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.06);
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  pointer-events: none;
-  mix-blend-mode: soft-light;
-  padding: 40px;
-  white-space: pre-wrap;
-  line-height: 1.6;
-  opacity: 0.18;
-  animation: cipherScroll 16s linear infinite alternate;
+// =========================
+// CIPHER TEXT LAYER
+// =========================
+const cipherLayer = document.querySelector(".cipher-layer");
+if (cipherLayer) {
+  const chars = "KNSN01∆µλ□■◇◆◈◉✦✧";
+  let cipherText = "";
+  for (let i = 0; i < 2400; i++) {
+    cipherText += chars[Math.floor(Math.random() * chars.length)];
+    if (i % 80 === 0) cipherText += "\n";
+  }
+  cipherLayer.innerText = cipherText;
 }
 
-@keyframes cipherScroll {
-  0% {
-    transform: translateY(18px);
-  }
-  100% {
-    transform: translateY(-18px);
+// =========================
+// FLOATING 2D SHARDS
+// =========================
+const shardContainer = document.querySelector(".shards");
+if (shardContainer && window.gsap) {
+  for (let i = 0; i < 7; i++) {
+    const shard = document.createElement("div");
+    shard.className = "shard";
+    shard.style.position = "absolute";
+    shard.style.width = `${40 + Math.random() * 30}px`;
+    shard.style.height = `${70 + Math.random() * 40}px`;
+    shard.style.borderRadius = "6px";
+    shard.style.border = "1px solid rgba(204,208,207,0.18)";
+    shard.style.background =
+      "linear-gradient(145deg, rgba(218,241,222,0.18), rgba(6,20,27,0.9))";
+    shard.style.backdropFilter = "blur(10px)";
+    shard.style.opacity = 0.42;
+    shard.style.left = Math.random() * 90 + "%";
+    shard.style.top = 10 + Math.random() * 60 + "%";
+    shard.style.transform = `translate(-50%, -50%) rotate(${Math.random() * 25 - 12}deg)`;
+
+    shardContainer.appendChild(shard);
+
+    gsap.to(shard, {
+      y: Math.random() * 80 - 40,
+      x: Math.random() * 40 - 20,
+      duration: 6 + Math.random() * 5,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
   }
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  #hero {
-    padding-top: 62px;
-  }
+// =========================
+// CAMERA INTERACTION (PARALLAX)
+// =========================
+document.addEventListener("mousemove", (e) => {
+  const xNorm = e.clientX / window.innerWidth - 0.5;
+  const yNorm = e.clientY / window.innerHeight - 0.5;
 
-  .hud {
-    padding: 18px 16px 26px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-  }
+  if (window.gsap) {
+    gsap.to(coreGroup.rotation, {
+      y: xNorm * 0.4,
+      x: -yNorm * 0.2,
+      duration: 1.2,
+      ease: "power2.out"
+    });
 
-  .hud-left,
-  .hud-right {
-    flex-direction: row;
-    gap: 12px;
-    margin-bottom: 6px;
-    font-size: 0.65rem;
+    gsap.to(camera.rotation, {
+      y: -xNorm * 0.35,
+      x: -yNorm * 0.25,
+      duration: 1.3,
+      ease: "power3.out"
+    });
   }
+});
 
-  .center {
-    margin-top: 12vh;
-  }
+// =========================
+// CTA MAGNETIC MICRO-EFFECT
+// =========================
+if (window.gsap) {
+  document.querySelectorAll(".cta").forEach((btn) => {
+    btn.addEventListener("mousemove", (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      gsap.to(btn, {
+        x: x * 0.15,
+        y: y * 0.3,
+        duration: 0.25,
+        ease: "power2.out"
+      });
+    });
 
-  .mask-holo {
-    width: 200px;
-    height: 200px;
-  }
+    btn.addEventListener("mouseleave", () => {
+      gsap.to(btn, { x: 0, y: 0, duration: 0.35, ease: "power3.out" });
+    });
 
-  .cipher-layer {
-    font-size: 10px;
-    padding: 20px;
-  }
-                   }
+    btn.addEventListener("mousedown", () => {
+      gsap.to(btn, { scale: 0.97, duration: 0.08 });
+    });
+
+    btn.addEventListener("mouseup", () => {
+      gsap.to(btn, { scale: 1, duration: 0.16 });
+    });
+  });
+}
+
+// =========================
+// ANIMATION LOOP
+// =========================
+const clock = new THREE.Clock();
+
+function animate() {
+  requestAnimationFrame(animate);
+  const t = clock.getElapsedTime();
+
+  // core rotations
+  cube.rotation.x += 0.004;
+  cube.rotation.y += 0.006;
+
+  orb.rotation.y -= 0.003;
+  innerSphere.rotation.y += 0.012;
+
+  // ring pulse
+  const pulse = (Math.sin(t * 2.2) + 1) / 2;
+  ring.scale.set(1 + pulse * 0.15, 1, 1 + pulse * 0.15);
+  ring.material.opacity = 0.15 + pulse * 0.22;
+
+  // floor subtle scroll
+  floor.rotation.z = Math.sin(t * 0.1) * 0.03;
+
+  // cinematic camera orbit
+  const orbitRadius = 5;
+  camera.position.x = Math.sin(t * 0.25) * 0.8;
+  camera.position.y = 1.2 + Math.sin(t * 0.18) * 0.3;
+  camera.position.z = orbitRadius + Math.cos(t * 0.15) * 0.4;
+
+  camera.lookAt(0, 0, 0);
+
+  // particle vortex
+  animateParticles(t);
+
+  renderer.render(scene, camera);
+}
+animate();
