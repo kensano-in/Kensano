@@ -267,22 +267,18 @@ function animate() {
   requestAnimationFrame(animate);
   const t = clock.getElapsedTime();
 
-  // core rotations
   cube.rotation.x += 0.004;
   cube.rotation.y += 0.006;
 
   orb.rotation.y -= 0.003;
   innerSphere.rotation.y += 0.012;
 
-  // ring pulse
   const pulse = (Math.sin(t * 2.2) + 1) / 2;
   ring.scale.set(1 + pulse * 0.15, 1, 1 + pulse * 0.15);
   ring.material.opacity = 0.15 + pulse * 0.22;
 
-  // floor subtle scroll
   floor.rotation.z = Math.sin(t * 0.1) * 0.03;
 
-  // cinematic camera orbit
   const orbitRadius = 5;
   camera.position.x = Math.sin(t * 0.25) * 0.8;
   camera.position.y = 1.2 + Math.sin(t * 0.18) * 0.3;
@@ -290,9 +286,7 @@ function animate() {
 
   camera.lookAt(0, 0, 0);
 
-  // particle vortex
   animateParticles(t);
-
   renderer.render(scene, camera);
 }
 animate();
