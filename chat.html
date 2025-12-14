@@ -18,5 +18,18 @@
   <button>Send</button>
 </div>
 
+<!-- 🔐 SESSION CHECK (STEP 6) -->
+<script>
+  fetch("/session", {
+    headers: {
+      "Authorization": localStorage.getItem("kensano_token")
+    }
+  }).then(res => {
+    if (!res.ok) {
+      window.location.href = "index.html";
+    }
+  });
+</script>
+
 </body>
 </html>
