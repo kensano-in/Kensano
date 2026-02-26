@@ -1,206 +1,197 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kensano Archive</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+<title>Kensano Library</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Playfair+Display:wght@500&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
+
+/* ===== LEATHER BACKGROUND ===== */
 body{
 margin:0;
 font-family:"Cormorant Garamond",serif;
-background:#0c0d10;
-color:#e6deca;
-display:flex;
-height:100vh;
+color:#e8dcc1;
+background:
+radial-gradient(circle at 20% 20%,rgba(255,255,255,.04),transparent 30%),
+linear-gradient(#14120f,#0b0a08);
+overflow-x:hidden;
 }
 
-/* ===== SIDEBAR ===== */
-.sidebar{
-width:260px;
-background:#121318;
-padding:25px;
-border-right:1px solid rgba(255,255,255,.08);
-overflow-y:auto;
+/* ===== RAIN ===== */
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+/* ===== MAIN ===== */
+.container{
+max-width:800px;
+margin:auto;
+padding:60px 20px;
+text-align:center;
 }
 
 .logo{
 font-family:"Playfair Display";
-font-size:28px;
-letter-spacing:4px;
-margin-bottom:20px;
-}
-
-.booklist div{
-padding:8px 0;
-cursor:pointer;
-opacity:.85;
-}
-.booklist div:hover{opacity:1;color:#c9b27a}
-
-/* ===== MAIN ===== */
-.main{
-flex:1;
-padding:40px;
-overflow-y:auto;
-}
-
-.title{
-font-family:"Playfair Display";
-font-size:36px;
+font-size:42px;
+letter-spacing:8px;
 margin-bottom:10px;
 }
 
-.reader{
-max-width:700px;
-margin:auto;
-line-height:1.9;
-font-size:20px;
+.subtitle{
+opacity:.6;
+margin-bottom:40px;
 }
 
-.page{display:none;}
-.page.active{display:block;}
+/* ===== BOOK ===== */
+.book{
+perspective:1500px;
+margin:auto;
+width:100%;
+max-width:600px;
+height:320px;
+position:relative;
+}
 
-.controls{text-align:center;margin-top:30px;}
+.page{
+position:absolute;
+width:100%;
+height:100%;
+background:#1a1815;
+border-radius:10px;
+padding:40px;
+box-shadow:0 20px 60px rgba(0,0,0,.7);
+backface-visibility:hidden;
+transition:transform 1s;
+}
+
+.page.flip{
+transform:rotateY(-180deg);
+}
+
+.hand{
+font-family:"Great Vibes",cursive;
+font-size:28px;
+line-height:1.7;
+}
+
+/* ===== BUTTON ===== */
 button{
-padding:8px 16px;
-margin:5px;
+margin-top:20px;
+padding:10px 20px;
 background:none;
-border:1px solid #c9b27a;
-color:white;
+border:1px solid #cbb27a;
+color:#e8dcc1;
 cursor:pointer;
 }
-button:hover{background:#c9b27a;color:black;}
 
+button:hover{
+background:#cbb27a;
+color:black;
+}
+
+/* ===== UPCOMING ===== */
 .upcoming{
 margin-top:50px;
-padding-top:30px;
-border-top:1px solid rgba(255,255,255,.08);
-}
-
-.countdown{
-font-size:18px;
-margin-top:10px;
 opacity:.8;
 }
+
 </style>
 </head>
-
 <body>
 
-<div class="sidebar">
-<div class="logo">KENSANO</div>
+<canvas id="rain"></canvas>
 
-<b>Archive</b>
-<div class="booklist">
-<div onclick="openBook(1,'Adhuri Dastaan')">Adhuri Dastaan</div>
-<div onclick="openBook(2,'Poets Are Quiet')">Poets Are Quiet</div>
-<div onclick="openBook(3,'Love & Luck')">Love & Luck</div>
-<div onclick="openBook(4,'The Last Letter in Winter')">The Last Letter in Winter</div>
+<div class="container">
+
+<div class="logo">KENSANO</div>
+<div class="subtitle">Private Digital Archive</div>
+
+<div class="book">
+<div class="page" id="p1">
+<div class="hand">
+She left before the last sentence…  
+The ink still waits.
 </div>
+</div>
+
+<div class="page" id="p2" style="transform:rotateY(180deg)">
+<div class="hand">
+Poets stay quiet because storms whisper inside them.
+</div>
+</div>
+</div>
+
+<button onclick="turn()">Turn Page</button>
 
 <div class="upcoming">
-<b>Upcoming</b>
-<div>Ink on Sleepless Nights</div>
-<div>The Library of Lost Promises</div>
-<div>Where Old Radios Still Sing</div>
-<div>Midnight Without You</div>
-<div>The Dust of Old Letters</div>
-
-<div class="countdown">
-Releasing in: <span id="timer"></span>
-</div>
+Upcoming Manuscripts:<br>
+Adhuri Dastaan<br>
+Poets Are Quiet<br>
+Love & Luck<br>
+Last Letter in Winter<br>
+Dust of Old Letters
 </div>
 
-</div>
-
-<div class="main">
-
-<div class="title" id="bookTitle">Welcome to Kensano</div>
-
-<div class="reader">
-
-<div id="page0" class="page active">
-Choose a manuscript from the archive.  
-A library opens slowly… like trust.
-</div>
-
-<div id="page1" class="page">
-She left before the last sentence.  
-The ink dried… but the story still waits.
-</div>
-
-<div id="page2" class="page">
-Poets are quiet,  
-because storms whisper inside them.
-</div>
-
-<div id="page3" class="page">
-Love and luck met on a rainy night.  
-Only one stayed.
-</div>
-
-<div id="page4" class="page">
-Snow covered the letter…  
-but not the goodbye.
-</div>
-
-</div>
-
-<div class="controls">
-<button onclick="prev()">Prev</button>
-<button onclick="next()">Next</button>
-<button onclick="bookmark()">Bookmark</button>
-</div>
+<button onclick="toggleFire()">🔥 Fireplace Sound</button>
 
 </div>
 
 <script>
 
-/* ===== BOOK READER ===== */
-let pages=document.querySelectorAll(".page");
-let current=0;
-
-function show(i){
-pages.forEach(p=>p.classList.remove("active"));
-pages[i].classList.add("active");
-current=i;
+/* ===== PAGE TURN ===== */
+let flipped=false;
+function turn(){
+document.getElementById("p1").classList.toggle("flip");
+flipped=!flipped;
 }
 
-function next(){ if(current<pages.length-1) show(current+1); }
-function prev(){ if(current>0) show(current-1); }
+/* ===== FIREPLACE ===== */
+let fire=new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_5f0cfa8c88.mp3");
+fire.loop=true;
 
-function openBook(id,name){
-show(id);
-document.getElementById("bookTitle").innerText=name;
+function toggleFire(){
+if(fire.paused) fire.play();
+else fire.pause();
 }
 
-function bookmark(){
-localStorage.setItem("kensanoBookmark",current);
-alert("Bookmark saved 📚");
+/* ===== RAIN EFFECT ===== */
+let c=document.getElementById("rain");
+let ctx=c.getContext("2d");
+c.width=innerWidth;
+c.height=innerHeight;
+
+let drops=[];
+for(let i=0;i<200;i++)
+drops.push({x:Math.random()*c.width,y:Math.random()*c.height});
+
+function draw(){
+ctx.fillStyle="rgba(0,0,0,.3)";
+ctx.fillRect(0,0,c.width,c.height);
+
+ctx.strokeStyle="rgba(200,200,255,.3)";
+ctx.lineWidth=1;
+
+for(let d of drops){
+ctx.beginPath();
+ctx.moveTo(d.x,d.y);
+ctx.lineTo(d.x,d.y+10);
+ctx.stroke();
+
+d.y+=10;
+if(d.y>c.height) d.y=0;
 }
 
-/* ===== COUNTDOWN ===== */
-let releaseDate=new Date();
-releaseDate.setDate(releaseDate.getDate()+30); // 30 days
-
-function updateTimer(){
-let now=new Date().getTime();
-let dist=releaseDate-now;
-
-let d=Math.floor(dist/(1000*60*60*24));
-let h=Math.floor((dist%(1000*60*60*24))/(1000*60*60));
-let m=Math.floor((dist%(1000*60*60))/(1000*60));
-let s=Math.floor((dist%(1000*60))/1000);
-
-document.getElementById("timer").innerText=
-d+"d "+h+"h "+m+"m "+s+"s";
+requestAnimationFrame(draw);
 }
-setInterval(updateTimer,1000);
+draw();
 
 </script>
-
 </body>
 </html>
