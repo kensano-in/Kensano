@@ -1,188 +1,211 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kensano Archive</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;500;700&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;500;700&family=Playfair+Display:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
-
 :root{
---gold:#d6c39a;
---bg:#0b0c10;
---card:#121318;
+--gold:#d6c59a;
+--ink:#0b0c10;
+--wood:#3a2615;
+--paper:#efe4c5;
 }
 
-*{box-sizing:border-box;}
-
+/* ===== BODY ===== */
 body{
 margin:0;
 font-family:"Cormorant Garamond",serif;
-background:
-linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),
-url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1500");
-background-size:cover;
-background-attachment:fixed;
-color:#eee6d1;
+color:var(--paper);
+background:#050506;
+overflow-x:hidden;
 }
 
-/* ===== CENTER LAYOUT ===== */
-.wrapper{
-min-height:100vh;
+/* ===== CINEMATIC INTRO ===== */
+#intro{
+position:fixed;
+inset:0;
+background:black;
 display:flex;
 align-items:center;
 justify-content:center;
-padding:30px;
+font-size:32px;
+letter-spacing:10px;
+color:var(--gold);
+z-index:999;
+animation:fade 4s forwards;
 }
+@keyframes fade{0%{opacity:1}90%{opacity:1}100%{opacity:0;visibility:hidden}}
 
-/* ===== MAIN CARD ===== */
-.card{
-max-width:680px;
-width:100%;
-background:rgba(15,16,20,.92);
-backdrop-filter:blur(6px);
-padding:40px 30px;
-border-radius:16px;
-box-shadow:0 20px 80px rgba(0,0,0,.8);
+/* ===== WOODEN SHELF PARALLAX ===== */
+.shelf{
+min-height:100vh;
+background:
+linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.95)),
+url("https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1600");
+background-size:cover;
+background-attachment:fixed;
+padding:80px 20px;
 text-align:center;
 }
 
-/* ===== LOGO ===== */
+/* ===== TITLE ===== */
 .logo{
 font-family:"Playfair Display";
-letter-spacing:10px;
-font-size:38px;
-margin-bottom:8px;
+font-size:46px;
+letter-spacing:8px;
 color:var(--gold);
 }
 
-.subtitle{
-opacity:.7;
-font-size:14px;
-margin-bottom:30px;
+/* ===== CANDLE ===== */
+.candle{
+width:8px;
+height:50px;
+background:#eee;
+margin:20px auto;
+position:relative;
+}
+.candle::after{
+content:"";
+position:absolute;
+top:-12px;
+left:-4px;
+width:16px;
+height:16px;
+background:radial-gradient(circle,orange,yellow,transparent);
+animation:flicker .15s infinite alternate;
+}
+@keyframes flicker{
+from{transform:scale(1)}
+to{transform:scale(1.3)}
 }
 
-/* ===== QUOTE ===== */
-.quote{
-font-style:italic;
-font-size:20px;
-line-height:1.7;
-margin-bottom:40px;
-opacity:.95;
-}
-
-/* ===== UPCOMING ===== */
-.section-title{
-letter-spacing:3px;
-font-size:16px;
-margin-top:20px;
-margin-bottom:10px;
-color:var(--gold);
-}
-
+/* ===== BOOK GRID ===== */
 .books{
-line-height:1.9;
-font-size:18px;
-margin-bottom:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:20px;
+max-width:900px;
+margin:50px auto;
 }
+
+.book{
+background:linear-gradient(#6b4a2c,#2b1a0f);
+padding:20px;
+border-radius:6px;
+box-shadow:0 10px 30px rgba(0,0,0,.6);
+transition:.3s;
+cursor:pointer;
+}
+.book:hover{
+transform:translateY(-10px) rotate(-1deg);
+color:var(--gold);
+}
+
+/* ===== SECRET DOOR ===== */
+.secret{
+margin-top:40px;
+opacity:.4;
+cursor:pointer;
+}
+.secret:hover{opacity:1;color:var(--gold)}
 
 /* ===== COUNTDOWN ===== */
-.countdown{
-font-size:18px;
-margin-top:15px;
-opacity:.8;
+.count{
+margin-top:40px;
+opacity:.7;
 }
 
-/* ===== BUTTON ===== */
-.btn{
-margin-top:25px;
-padding:12px 26px;
+/* ===== AUDIO BUTTONS ===== */
+button{
+padding:8px 18px;
+margin:8px;
 border:1px solid var(--gold);
 background:none;
 color:var(--gold);
 cursor:pointer;
-font-size:16px;
-border-radius:6px;
-transition:.3s;
-}
-.btn:hover{
-background:var(--gold);
-color:black;
 }
 
 /* ===== MOBILE ===== */
-@media(max-width:500px){
-.logo{font-size:28px;}
-.quote{font-size:17px;}
-.books{font-size:16px;}
-.card{padding:30px 20px;}
+@media(max-width:700px){
+.logo{font-size:34px}
 }
-
 </style>
 </head>
+
 <body>
 
-<div class="wrapper">
+<div id="intro">KENSANO ARCHIVE</div>
 
-<div class="card">
+<section class="shelf">
 
 <div class="logo">KENSANO</div>
-<div class="subtitle">Private Digital Archive</div>
+<div class="candle"></div>
 
-<div class="quote">
-“A quiet cathedral of books is awakening…  
-ink remembers every love that history forgot.”
-</div>
-
-<div class="section-title">Upcoming Manuscripts</div>
+<p style="font-family:'Great Vibes';font-size:28px">
+“Books remember the love that people forget.”
+</p>
 
 <div class="books">
-Adhuri Dastaan<br>
-Poets Are Quiet<br>
-Love & Luck<br>
-Last Letter in Winter<br>
-Dust of Old Letters<br>
-Midnight Without You<br>
-The Library of Lost Promisses
+<div class="book">Adhuri Dastaan</div>
+<div class="book">Poets Are Quiet</div>
+<div class="book">Love & Luck</div>
+<div class="book">Last Letter in Winter</div>
+<div class="book">Dust of Old Letters</div>
+<div class="book">Midnight Without You</div>
+<div class="book">Where Old Radios Still Sing</div>
+<div class="book">Ink on Sleepless Nights</div>
+<div class="book">Rain Between Two Pages</div>
+<div class="book">The Silence of Her Name</div>
+<div class="book">Songs From Broken Clocks</div>
+<div class="book">Letters Never Posted</div>
+<div class="book">Autumn Without Goodbye</div>
+<div class="book">Echoes of Quiet Love</div>
+<div class="book">The Girl Who Loved Libraries</div>
 </div>
 
-<div class="countdown" id="timer"></div>
+<div class="count" id="timer"></div>
 
-<button class="btn" onclick="fire()">🔥 Fireplace Ambience</button>
+<center>
+<button onclick="rain()">🌧 Rain</button>
+<button onclick="fire()">🔥 Fireplace</button>
+<button onclick="clock()">⏰ Clock</button>
+</center>
 
+<div class="secret" onclick="alert('You found a hidden Kensano manuscript… 🤍')">
+…there is always one book nobody sees…
 </div>
-</div>
+
+</section>
 
 <script>
-
-/* ===== COUNTDOWN ===== */
-const launch=new Date();
-launch.setDate(launch.getDate()+30);
-
+/* COUNTDOWN (stable, no reset) */
+const launch=new Date("2026-06-01");
 setInterval(()=>{
-let now=new Date();
-let diff=launch-now;
-
-let d=Math.floor(diff/86400000);
-let h=Math.floor(diff/3600000)%24;
-let m=Math.floor(diff/60000)%60;
-let s=Math.floor(diff/1000)%60;
-
+let d=(launch-new Date());
+let days=Math.floor(d/86400000);
+let h=Math.floor(d/3600000)%24;
+let m=Math.floor(d/60000)%60;
+let s=Math.floor(d/1000)%60;
 document.getElementById("timer").innerHTML=
-"Opening in "+d+"d "+h+"h "+m+"m "+s+"s";
-
+"Opening in "+days+"d "+h+"h "+m+"m "+s+"s";
 },1000);
 
-/* ===== FIREPLACE ===== */
+/* AUDIO */
+let r=new Audio("https://cdn.pixabay.com/download/audio/2022/03/10/audio_c8d3f7c0c6.mp3");
+r.loop=true;
+function rain(){r.paused?r.play():r.pause();}
+
 let f=new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_5f0cfa8c88.mp3");
 f.loop=true;
-function fire(){
-if(f.paused)f.play();
-else f.pause();
-}
+function fire(){f.paused?f.play():f.pause();}
 
+let c=new Audio("https://cdn.pixabay.com/download/audio/2021/08/09/audio_8c6d5b9a9a.mp3");
+c.loop=true;
+function clock(){c.paused?c.play():c.pause();}
 </script>
 
 </body>
