@@ -1,197 +1,189 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kensano Archive</title>
 
-<title>Kensano Library</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Playfair+Display:wght@500&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;500;700&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 
 <style>
 
-/* ===== LEATHER BACKGROUND ===== */
+:root{
+--gold:#d6c39a;
+--bg:#0b0c10;
+--card:#121318;
+}
+
+*{box-sizing:border-box;}
+
 body{
 margin:0;
 font-family:"Cormorant Garamond",serif;
-color:#e8dcc1;
 background:
-radial-gradient(circle at 20% 20%,rgba(255,255,255,.04),transparent 30%),
-linear-gradient(#14120f,#0b0a08);
-overflow-x:hidden;
+linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),
+url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1500");
+background-size:cover;
+background-attachment:fixed;
+color:#eee6d1;
 }
 
-/* ===== RAIN ===== */
-canvas{
-position:fixed;
-top:0;
-left:0;
-z-index:-1;
+/* ===== CENTER LAYOUT ===== */
+.wrapper{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:30px;
 }
 
-/* ===== MAIN ===== */
-.container{
-max-width:800px;
-margin:auto;
-padding:60px 20px;
+/* ===== MAIN CARD ===== */
+.card{
+max-width:680px;
+width:100%;
+background:rgba(15,16,20,.92);
+backdrop-filter:blur(6px);
+padding:40px 30px;
+border-radius:16px;
+box-shadow:0 20px 80px rgba(0,0,0,.8);
 text-align:center;
 }
 
+/* ===== LOGO ===== */
 .logo{
 font-family:"Playfair Display";
-font-size:42px;
-letter-spacing:8px;
-margin-bottom:10px;
+letter-spacing:10px;
+font-size:38px;
+margin-bottom:8px;
+color:var(--gold);
 }
 
 .subtitle{
-opacity:.6;
-margin-bottom:40px;
+opacity:.7;
+font-size:14px;
+margin-bottom:30px;
 }
 
-/* ===== BOOK ===== */
-.book{
-perspective:1500px;
-margin:auto;
-width:100%;
-max-width:600px;
-height:320px;
-position:relative;
-}
-
-.page{
-position:absolute;
-width:100%;
-height:100%;
-background:#1a1815;
-border-radius:10px;
-padding:40px;
-box-shadow:0 20px 60px rgba(0,0,0,.7);
-backface-visibility:hidden;
-transition:transform 1s;
-}
-
-.page.flip{
-transform:rotateY(-180deg);
-}
-
-.hand{
-font-family:"Great Vibes",cursive;
-font-size:28px;
+/* ===== QUOTE ===== */
+.quote{
+font-style:italic;
+font-size:20px;
 line-height:1.7;
-}
-
-/* ===== BUTTON ===== */
-button{
-margin-top:20px;
-padding:10px 20px;
-background:none;
-border:1px solid #cbb27a;
-color:#e8dcc1;
-cursor:pointer;
-}
-
-button:hover{
-background:#cbb27a;
-color:black;
+margin-bottom:40px;
+opacity:.95;
 }
 
 /* ===== UPCOMING ===== */
-.upcoming{
-margin-top:50px;
+.section-title{
+letter-spacing:3px;
+font-size:16px;
+margin-top:20px;
+margin-bottom:10px;
+color:var(--gold);
+}
+
+.books{
+line-height:1.9;
+font-size:18px;
+margin-bottom:20px;
+}
+
+/* ===== COUNTDOWN ===== */
+.countdown{
+font-size:18px;
+margin-top:15px;
 opacity:.8;
+}
+
+/* ===== BUTTON ===== */
+.btn{
+margin-top:25px;
+padding:12px 26px;
+border:1px solid var(--gold);
+background:none;
+color:var(--gold);
+cursor:pointer;
+font-size:16px;
+border-radius:6px;
+transition:.3s;
+}
+.btn:hover{
+background:var(--gold);
+color:black;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:500px){
+.logo{font-size:28px;}
+.quote{font-size:17px;}
+.books{font-size:16px;}
+.card{padding:30px 20px;}
 }
 
 </style>
 </head>
 <body>
 
-<canvas id="rain"></canvas>
+<div class="wrapper">
 
-<div class="container">
+<div class="card">
 
 <div class="logo">KENSANO</div>
 <div class="subtitle">Private Digital Archive</div>
 
-<div class="book">
-<div class="page" id="p1">
-<div class="hand">
-She left before the last sentence…  
-The ink still waits.
-</div>
+<div class="quote">
+“A quiet cathedral of books is awakening…  
+ink remembers every love that history forgot.”
 </div>
 
-<div class="page" id="p2" style="transform:rotateY(180deg)">
-<div class="hand">
-Poets stay quiet because storms whisper inside them.
-</div>
-</div>
-</div>
+<div class="section-title">Upcoming Manuscripts</div>
 
-<button onclick="turn()">Turn Page</button>
-
-<div class="upcoming">
-Upcoming Manuscripts:<br>
+<div class="books">
 Adhuri Dastaan<br>
 Poets Are Quiet<br>
 Love & Luck<br>
 Last Letter in Winter<br>
-Dust of Old Letters
+Dust of Old Letters<br>
+Midnight Without You<br>
+The Library of Lost Promisses
 </div>
 
-<button onclick="toggleFire()">🔥 Fireplace Sound</button>
+<div class="countdown" id="timer"></div>
 
+<button class="btn" onclick="fire()">🔥 Fireplace Ambience</button>
+
+</div>
 </div>
 
 <script>
 
-/* ===== PAGE TURN ===== */
-let flipped=false;
-function turn(){
-document.getElementById("p1").classList.toggle("flip");
-flipped=!flipped;
-}
+/* ===== COUNTDOWN ===== */
+const launch=new Date();
+launch.setDate(launch.getDate()+30);
+
+setInterval(()=>{
+let now=new Date();
+let diff=launch-now;
+
+let d=Math.floor(diff/86400000);
+let h=Math.floor(diff/3600000)%24;
+let m=Math.floor(diff/60000)%60;
+let s=Math.floor(diff/1000)%60;
+
+document.getElementById("timer").innerHTML=
+"Opening in "+d+"d "+h+"h "+m+"m "+s+"s";
+
+},1000);
 
 /* ===== FIREPLACE ===== */
-let fire=new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_5f0cfa8c88.mp3");
-fire.loop=true;
-
-function toggleFire(){
-if(fire.paused) fire.play();
-else fire.pause();
+let f=new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_5f0cfa8c88.mp3");
+f.loop=true;
+function fire(){
+if(f.paused)f.play();
+else f.pause();
 }
-
-/* ===== RAIN EFFECT ===== */
-let c=document.getElementById("rain");
-let ctx=c.getContext("2d");
-c.width=innerWidth;
-c.height=innerHeight;
-
-let drops=[];
-for(let i=0;i<200;i++)
-drops.push({x:Math.random()*c.width,y:Math.random()*c.height});
-
-function draw(){
-ctx.fillStyle="rgba(0,0,0,.3)";
-ctx.fillRect(0,0,c.width,c.height);
-
-ctx.strokeStyle="rgba(200,200,255,.3)";
-ctx.lineWidth=1;
-
-for(let d of drops){
-ctx.beginPath();
-ctx.moveTo(d.x,d.y);
-ctx.lineTo(d.x,d.y+10);
-ctx.stroke();
-
-d.y+=10;
-if(d.y>c.height) d.y=0;
-}
-
-requestAnimationFrame(draw);
-}
-draw();
 
 </script>
+
 </body>
 </html>
