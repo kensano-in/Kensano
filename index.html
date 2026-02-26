@@ -1,261 +1,188 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kensano Private Library</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
-
-<style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kensano Library — Coming Soon</title><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Cinzel:wght@400;600&family=Crimson+Text&display=swap" rel="stylesheet"><style>
+*{margin:0;padding:0;box-sizing:border-box}
 body{
-margin:0;
-background:#050506;
-font-family:'EB Garamond',serif;
-color:#e7dcc6;
+background:#0b0a07;
+font-family:"Crimson Text",serif;
+color:#e8dcc5;
 overflow-x:hidden;
 }
 
-/* PAPER GRAIN */
+/* RAIN WINDOW */
+video.bg{
+position:fixed;
+inset:0;
+object-fit:cover;
+opacity:.15;
+z-index:-3;
+}
+
+/* GRAIN */
 body::after{
 content:"";
 position:fixed;
 inset:0;
 background:url("https://grainy-gradients.vercel.app/noise.svg");
-opacity:.15;
+opacity:.08;
 pointer-events:none;
+z-index:-1;
 }
 
-/* SPOTLIGHT CURSOR */
-.spotlight{
+/* CANDLE MODE */
+#candle{
 position:fixed;
-width:200px;
-height:200px;
+width:500px;height:500px;
 border-radius:50%;
 pointer-events:none;
-background:radial-gradient(circle,rgba(255,255,200,.2),transparent);
-mix-blend-mode:screen;
-transform:translate(-50%,-50%);
+background:radial-gradient(circle,rgba(255,200,120,.25),transparent 60%);
+mix-blend-mode:soft-light;
 }
 
-/* CANDLE */
-.candle{
-width:6px;
-height:60px;
-background:#f5d08a;
-margin:auto;
-border-radius:3px;
-position:relative;
-}
-.flame{
-position:absolute;
-top:-18px;
-left:-6px;
-width:18px;
-height:18px;
-background:radial-gradient(circle,#ffd680,#ff8c00);
-border-radius:50%;
-animation:flicker .2s infinite alternate;
-}
-@keyframes flicker{
-from{transform:scale(1) rotate(-2deg);}
-to{transform:scale(1.1) rotate(2deg);}
-}
-
-/* CARD */
-.card{
-max-width:700px;
-margin:40px auto;
-padding:50px;
-border-radius:24px;
-background:rgba(255,255,255,.03);
-backdrop-filter:blur(15px);
-box-shadow:0 30px 90px rgba(0,0,0,.8);
-text-align:center;
-}
-
-/* GOLD TEXT */
-.gold{
-font-family:'Cinzel',serif;
-background:linear-gradient(90deg,#fff,#e7d9b7,#bfa979,#fff);
--webkit-background-clip:text;
-color:transparent;
-letter-spacing:6px;
-font-size:38px;
-}
-
-/* TYPEWRITER */
-.type{
-border-right:2px solid #e7d9b7;
-white-space:nowrap;
-overflow:hidden;
-width:0;
-animation:type 6s steps(60,end) forwards;
-}
-@keyframes type{to{width:100%;}}
-
-.timer{font-size:26px;margin:20px 0}
-
-/* BOOKSHELF */
-.carousel{
-display:flex;
-overflow:auto;
-gap:15px;
-padding:10px;
-}
-.book{
-min-width:120px;
-height:180px;
-background:linear-gradient(#4b2c14,#1a0f05);
-border-radius:6px;
+/* INTRO */
+#intro{
+position:fixed;
+inset:0;
+background:black;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:14px;
-transition:.3s;
+font-family:"Cinzel";
+letter-spacing:12px;
+font-size:clamp(40px,8vw,80px);
+z-index:999;
+animation:fade 5s forwards 3s;
 }
-.book:hover{
-transform:scale(1.1);
-box-shadow:0 0 20px gold;
+@keyframes fade{to{opacity:0;visibility:hidden}}
+
+.container{
+max-width:760px;
+margin:90px auto;
+padding:50px;
+border-radius:30px;
+background:rgba(15,14,12,.75);
+backdrop-filter:blur(20px);
+box-shadow:0 50px 120px rgba(0,0,0,.9);
+border:1px solid rgba(255,255,255,.06);
+}
+
+.title{
+font-family:"Playfair Display";
+font-size:clamp(38px,6vw,60px);
+text-align:center;
+margin-bottom:20px;
+background:linear-gradient(90deg,#fff,#d8c89a,#fff);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.text{
+text-align:center;
+line-height:1.8;
+font-size:18px;
+opacity:.9;
+}
+
+/* BOOKSHELF */
+.shelf{
+display:flex;
+justify-content:center;
+margin:40px 0;
+}
+.book{
+width:30px;height:120px;
+margin:0 4px;
+border-radius:3px;
+background:linear-gradient(#c9a66b,#6b4e2e);
+animation:float 4s ease-in-out infinite;
+}
+.book:nth-child(2){animation-delay:1s}
+.book:nth-child(3){animation-delay:2s}
+.book:nth-child(4){animation-delay:3s}
+@keyframes float{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
 }
 
 /* BUTTON */
-button{
-padding:14px 30px;
+.btn{
+display:block;
+margin:30px auto;
+padding:14px 28px;
+background:linear-gradient(90deg,#e8d7b0,#bfa979);
 border:none;
-border-radius:10px;
-background:linear-gradient(#e7d9b7,#bfa979);
-cursor:pointer;
-font-weight:bold;
-}
-
-/* MODAL */
-.modal{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.7);
-align-items:center;
-justify-content:center;
-}
-.modal-box{
-background:#111;
-padding:30px;
 border-radius:14px;
-max-width:300px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.section{
+margin-top:40px;
+font-size:16px;
+line-height:1.7;
+}
+
+.quote{
+margin-top:30px;
 text-align:center;
+font-style:italic;
+opacity:.8;
 }
 
-/* FOOTER */
-footer{
+.footer{
+margin-top:40px;
+font-size:13px;
 text-align:center;
-margin:40px;
-opacity:.6;
+opacity:.5;
 }
+</style></head>
+<body><div id="intro">KENSANO</div>
+<video class="bg" autoplay muted loop>
+<source src="https://cdn.coverr.co/videos/coverr-rain-on-window-5401/1080p.mp4" type="video/mp4">
+</video>
+<div id="candle"></div><div class="container">
+<div class="title">Coming Soon</div>
+<div class="text">
+A quiet library is being carved from code and candlelight.<br>
+Rare books, poems, research vaults and secret rooms are awakening inside Kensano.
+</div><div class="shelf">
+<div class="book"></div>
+<div class="book"></div>
+<div class="book"></div>
+<div class="book"></div>
+</div><button class="btn" onclick="shayari()">✨ Generate AI Shayari</button>
 
-</style>
-</head>
-
-<body>
-
-<div class="spotlight" id="spot"></div>
-
-<div class="card">
-
-<div class="candle"><div class="flame"></div></div>
-
-<h1 class="gold">KENSANO</h1>
-
-<p class="type">
-A quiet library is rising from candlelight and code…
-</p>
-
-<div id="timer" class="timer"></div>
-
-<button onclick="modal()">Reserve Shelf</button>
-
+<div id="shayari" class="quote"></div><div class="section">
+<b>Upcoming Book:</b> Adhuri Dastaan 📖<br>
+If you have a story or book, send it to <b>admin@kensano.in</b>
+</div><div class="section">
+<b>Top Authors Leaderboard</b><br>
+1. A. Rahman — 1200 Reads<br>
+2. Mira Sen — 980 Reads<br>
+3. Ken — 750 Reads 🔥
+</div><div class="footer">
+Latin Motto — *Scientia in Tenebris Lucet*<br>
+© Kensano Private Digital Library
 </div>
-
-<!-- BOOK CAROUSEL -->
-<div class="card">
-<h2>Upcoming Shelves</h2>
-<div class="carousel">
-<div class="book">Adhuri Dastaan</div>
-<div class="book">Moon Letters</div>
-<div class="book">Silent Wars</div>
-<div class="book">Ken Diaries</div>
-<div class="book">Lost Ghazals</div>
-</div>
-</div>
-
-<!-- QUOTE -->
-<div class="card">
-<h2>Poetry of the Day</h2>
-<p id="poem"></p>
-<button onclick="poetry()">New Line</button>
-</div>
-
-<footer>
-"Per aspera ad astra" — Through hardship to stars  
-<br>
-Send your stories → admin@kensano.in
-</footer>
-
-<div class="modal" id="m">
-<div class="modal-box">
-Shelf Reserved.  
-Founders will review your request.
-</div>
-</div>
-
-<script>
-
-/* TIMER */
-let end=new Date("2026-05-01").getTime();
-setInterval(()=>{
-let d=end-new Date().getTime();
-let days=Math.floor(d/86400000);
-let hrs=Math.floor(d%86400000/3600000);
-let min=Math.floor(d%3600000/60000);
-let sec=Math.floor(d%60000/1000);
-timer.innerHTML=days+"D "+hrs+"H "+min+"M "+sec+"S";
-},1000);
-
-/* POETRY */
-let lines=[
-"Some books are mirrors, some are doors.",
-"The quiet reader knows the loudest truths.",
-"Ink remembers what hearts forget.",
-"Every shelf hides a sleeping universe."
-];
-function poetry(){
-poem.innerHTML=lines[Math.floor(Math.random()*lines.length)];
-}
-poetry();
-
-/* MODAL */
-function modal(){
-m.style.display="flex";
-setTimeout(()=>m.style.display="none",2000);
-}
-
-/* SPOTLIGHT */
+</div><script>
+/* Candle follow */
 document.addEventListener("mousemove",e=>{
-spot.style.left=e.clientX+"px";
-spot.style.top=e.clientY+"px";
+candle.style.left=e.clientX-250+"px";
+candle.style.top=e.clientY-250+"px";
 });
 
-/* SECRET DOOR */
-let key="";
-document.addEventListener("keydown",e=>{
-key+=e.key;
-if(key.includes("kensano")){
-alert("Secret Door Opened 🔐");
-key="";
+/* Shayari generator */
+const lines=[
+"Har safha me tera zikr chhupa milta hai…",
+"Syaahi me dooba dil ab kitaab ban gaya…",
+"Adhuri daastaan bhi kabhi mukammal hoti hai…",
+"Khamosh shelf pe yaadein dhool si baithi hain…",
+"Har lafz tera naam padh leta hoon chupke se…"
+];
+function shayari(){
+shayari.innerText=lines[Math.floor(Math.random()*lines.length)];
 }
-});
-
-</script>
-
-</body>
+</script></body>
 </html>
