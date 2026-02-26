@@ -3,151 +3,181 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kensano Private Library</title>
+<title>Kensano Archive</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 
 <style>
-:root{
---bg:#0c0d10;
---paper:#f2e6c9;
---gold:#c7b27a;
---text:#e8e1cf;
-}
-
-*{box-sizing:border-box}
-
 body{
 margin:0;
-background:var(--bg);
-color:var(--text);
 font-family:"Cormorant Garamond",serif;
-}
-
-/* ===== CINEMATIC INTRO ===== */
-.intro{
-height:100vh;
+background:#0c0d10;
+color:#e6deca;
 display:flex;
-align-items:center;
-justify-content:center;
-flex-direction:column;
-text-align:center;
-letter-spacing:6px;
-}
-.intro h1{
-font-family:"Playfair Display";
-font-size:clamp(40px,6vw,90px);
-background:linear-gradient(90deg,#fff,var(--gold),#fff);
--webkit-background-clip:text;
-color:transparent;
-margin:0;
-}
-.intro p{
-opacity:.6;
-margin-top:10px;
+height:100vh;
 }
 
-/* ===== MAIN ===== */
-.section{
-max-width:900px;
-margin:120px auto;
-padding:0 20px;
+/* ===== SIDEBAR ===== */
+.sidebar{
+width:260px;
+background:#121318;
+padding:25px;
+border-right:1px solid rgba(255,255,255,.08);
+overflow-y:auto;
 }
 
-.title{
+.logo{
 font-family:"Playfair Display";
-font-size:42px;
+font-size:28px;
 letter-spacing:4px;
 margin-bottom:20px;
 }
 
-.lead{
-font-size:22px;
-line-height:1.7;
-opacity:.85;
+.search{
+width:100%;
+padding:8px;
+background:#1c1d22;
+border:none;
+color:white;
+margin-bottom:20px;
 }
 
-.divider{
-height:1px;
-background:rgba(255,255,255,.1);
-margin:60px 0;
+.booklist div{
+padding:8px 0;
+cursor:pointer;
+opacity:.8;
+}
+.booklist div:hover{opacity:1;color:#c9b27a}
+
+/* ===== MAIN ===== */
+.main{
+flex:1;
+padding:40px;
+overflow-y:auto;
 }
 
-.quote{
-background:var(--paper);
-color:#111;
-padding:30px;
-font-style:italic;
-border-left:4px solid var(--gold);
+.title{
+font-family:"Playfair Display";
+font-size:38px;
+margin-bottom:20px;
 }
 
-/* ===== BUTTON ===== */
-.btn{
-display:inline-block;
-margin-top:30px;
-padding:12px 26px;
-border:1px solid var(--gold);
-background:none;
-color:var(--text);
-text-decoration:none;
-transition:.3s;
-}
-.btn:hover{
-background:var(--gold);
-color:#111;
+/* ===== READER ===== */
+.reader{
+max-width:700px;
+margin:auto;
+line-height:1.9;
+font-size:20px;
 }
 
-/* ===== FOOTER ===== */
-.footer{
-margin-top:120px;
+.page{
+display:none;
+}
+.page.active{
+display:block;
+}
+
+.controls{
 text-align:center;
-opacity:.6;
-font-size:14px;
+margin-top:30px;
+}
+button{
+padding:8px 16px;
+margin:5px;
+background:none;
+border:1px solid #c9b27a;
+color:white;
+cursor:pointer;
+}
+button:hover{
+background:#c9b27a;
+color:black;
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div class="intro">
-<h1>KENSANO</h1>
-<p>Private Digital Library</p>
+<div class="sidebar">
+<div class="logo">KENSANO</div>
+<input class="search" placeholder="Search book…">
+
+<div class="booklist">
+<div onclick="openBook('adhuri')">Adhuri Dastaan</div>
+<div onclick="openBook('quiet')">Poets Are Quiet</div>
+<div onclick="openBook('luck')">Love & Luck</div>
+<div onclick="openBook('winter')">The Last Letter in Winter</div>
+</div>
 </div>
 
-<!-- SECTION 1 -->
-<div class="section">
-<div class="title">A Quiet Cathedral of Books</div>
+<div class="main">
 
-<p class="lead">
-Kensano is being built for those who still believe that words deserve silence,
-that unfinished poems deserve patience,
-and that libraries should feel like candlelight instead of noise.
-</p>
+<div class="title" id="bookTitle">Welcome to Kensano</div>
 
-<a class="btn" href="mailto:admin@kensano.in">
-Submit Your Manuscript
-</a>
+<div class="reader">
 
-<div class="divider"></div>
-
-<div class="quote">
-“Some books are doors. Some are mirrors.  
-And some are the only place where broken hearts learn to breathe.”
+<div id="page1" class="page active">
+Choose a manuscript from the archive on the left.  
+A library opens slowly… like trust.
 </div>
 
-<div class="divider"></div>
+<div id="adhuri" class="page">
+She left before the last sentence.  
+The ink dried.  
+But the story still waits…
+</div>
 
-<p class="lead">
-Upcoming Manuscript — <b>Adhuri Dastaan</b>
-</p>
+<div id="quiet" class="page">
+Poets are quiet,  
+because storms whisper inside them.
+</div>
 
-<div class="footer">
-Founded by Shinichiro & Ken  
-• Veritas Libris Habitat •
+<div id="luck" class="page">
+Love and luck met on a rainy night.  
+Only one stayed.
+</div>
+
+<div id="winter" class="page">
+Snow covered the letter.  
+But not the goodbye.
 </div>
 
 </div>
+
+<div class="controls">
+<button onclick="prev()">Prev</button>
+<button onclick="next()">Next</button>
+<button onclick="bookmark()">Bookmark</button>
+</div>
+
+</div>
+
+<script>
+
+let pages=document.querySelectorAll(".page");
+let current=0;
+
+function show(i){
+pages.forEach(p=>p.classList.remove("active"));
+pages[i].classList.add("active");
+current=i;
+}
+
+function next(){ if(current<pages.length-1) show(current+1); }
+function prev(){ if(current>0) show(current-1); }
+
+function openBook(id){
+pages.forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+document.getElementById("bookTitle").innerText=id.replace(/^\w/,c=>c.toUpperCase());
+}
+
+function bookmark(){
+localStorage.setItem("kensanoBookmark",current);
+alert("Bookmark saved 📚");
+}
+
+</script>
 
 </body>
 </html>
