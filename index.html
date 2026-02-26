@@ -1,172 +1,212 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kensano Archive – Coming Soon</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet"><style>
+<title>Kensano Archive</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box}
+
 body{
-margin:0;
-background:#05070d url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1400&q=80') center/cover fixed;
-font-family:'EB Garamond',serif;
-color:#e9dec3;
+background:#0b0c10;
+color:#e6dcc5;
+font-family:"EB Garamond",serif;
+line-height:1.7;
 }
 
-.overlay{
-background:rgba(5,7,13,0.85);
-min-height:100vh;
-padding:40px 20px;
-}
-
-.container{
-max-width:1100px;
+.wrapper{
+max-width:900px;
 margin:auto;
-background:rgba(10,12,18,0.9);
-border-radius:18px;
-padding:50px;
-box-shadow:0 0 60px rgba(0,0,0,.7);
+padding:50px 25px;
 }
 
 h1{
-font-family:'Cinzel',serif;
+font-family:"Cinzel",serif;
 letter-spacing:8px;
-font-size:42px;
+font-size:44px;
 text-align:center;
-color:#e6d2a4;
 margin-bottom:10px;
+color:#d8c59c;
 }
 
-.tag{
+.subtitle{
 text-align:center;
-font-size:16px;
 opacity:.7;
-margin-bottom:40px;
+margin-bottom:50px;
+font-size:15px;
 }
 
 .quote{
-font-family:'Great Vibes',cursive;
 text-align:center;
-font-size:28px;
-margin-bottom:50px;
+font-style:italic;
+font-size:18px;
+margin-bottom:60px;
+opacity:.85;
 }
 
 .section{
-margin-top:40px;
-border-top:1px solid rgba(255,255,255,.1);
-padding-top:30px;
+margin-top:60px;
 }
 
 .section h2{
-font-family:'Cinzel',serif;
+font-family:"Cinzel",serif;
 letter-spacing:4px;
-color:#d7c090;
+font-size:22px;
 margin-bottom:20px;
+color:#d8c59c;
+border-bottom:1px solid rgba(255,255,255,.08);
+padding-bottom:10px;
 }
 
-.grid{
+.books{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:18px;
+grid-template-columns:1fr 1fr;
+gap:12px 40px;
+font-size:17px;
 }
 
-.book{
-padding:16px;
-border-radius:10px;
-background:linear-gradient(145deg,#5e3c1c,#2b1a0a);
-text-align:center;
-cursor:pointer;
-transition:.3s;
-}
-.book:hover{transform:scale(1.05);}
-.author{opacity:.6;font-size:14px;}
-
-.footer{
-margin-top:50px;
-font-size:14px;
-text-align:center;
-opacity:.6;
+.books span{
+opacity:.9;
 }
 
 .countdown{
 text-align:center;
-font-size:20px;
-margin-top:20px;
+font-size:22px;
+margin-top:30px;
+letter-spacing:3px;
+color:#d8c59c;
 }
 
-.modal{
-position:fixed;
-top:0;left:0;right:0;bottom:0;
-background:rgba(0,0,0,.7);
-display:none;
-justify-content:center;
-align-items:center;
+.about{
+opacity:.85;
+margin-top:10px;
 }
-.modal-box{
-background:#0d1018;
-padding:30px;
-border-radius:10px;
-max-width:400px;
+
+.footer{
+margin-top:80px;
+font-size:13px;
+opacity:.6;
 text-align:center;
+border-top:1px solid rgba(255,255,255,.08);
+padding-top:25px;
 }
-</style></head><body>
-<div class="overlay">
-<div class="container"><h1>KENSANO</h1>
-<div class="tag">Private Digital Archive</div>
-<div class="quote">"Books remember the love that people forget."</div><div class="section">
-<h2>Upcoming Manuscripts</h2>
-<div class="grid">
-<div class="book" onclick="openBook('Adhuri Dastaan','Shubh')">Adhuri Dastaan<div class="author">Shubh</div></div>
-<div class="book" onclick="openBook('Poets Are Quiet','Kanav')">Poets Are Quiet<div class="author">Kanav</div></div>
-<div class="book" onclick="openBook('Love & Luck','Siddharth')">Love & Luck<div class="author">Siddharth</div></div>
-<div class="book" onclick="openBook('Last Letter in Winter','Zoya')">Last Letter in Winter<div class="author">Zoya</div></div>
-<div class="book" onclick="openBook('Dust of Old Letters','Akshit')">Dust of Old Letters<div class="author">Akshit</div></div>
-<div class="book" onclick="openBook('Midnight Without You','Shubh')">Midnight Without You<div class="author">Shubh</div></div>
-<div class="book" onclick="openBook('Where Old Radios Still Sing','Kanav')">Where Old Radios Still Sing<div class="author">Kanav</div></div>
-<div class="book" onclick="openBook('Ink on Sleepless Nights','Siddharth')">Ink on Sleepless Nights<div class="author">Siddharth</div></div>
-<div class="book" onclick="openBook('Rain Between Two Pages','Zoya')">Rain Between Two Pages<div class="author">Zoya</div></div>
-<div class="book" onclick="openBook('Silence of Her Name','Akshit')">Silence of Her Name<div class="author">Akshit</div></div>
-<div class="book" onclick="openBook('Letters Never Posted','Shubh')">Letters Never Posted<div class="author">Shubh</div></div>
-<div class="book" onclick="openBook('Autumn Without Goodbye','Kanav')">Autumn Without Goodbye<div class="author">Kanav</div></div>
-<div class="book" onclick="openBook('Echoes of Quiet Love','Siddharth')">Echoes of Quiet Love<div class="author">Siddharth</div></div>
-<div class="book" onclick="openBook('The Girl Who Loved Libraries','Zoya')">The Girl Who Loved Libraries<div class="author">Zoya</div></div>
-<div class="book" onclick="openBook('Songs From Broken Clocks','Akshit')">Songs From Broken Clocks<div class="author">Akshit</div></div>
-</div>
-<div class="countdown" id="count"></div>
-</div><div class="section">
-<h2>About Kensano</h2>
-<p>Kensano is a private archive of unfinished letters, quiet poems, and stories that deserve memory. Early access is invitation-only to preserve authenticity.</p>
-</div><div class="section">
-<h2>Manuscript Submission</h2>
-<p>Send your work to <b>admin@kensano.in</b> with your name and short intro.</p>
-</div><div class="section">
-<h2>Founders</h2>
-<p>Shinichiro — Vision & Archive Design<br>Ken — Systems & Preservation Technology</p>
-</div><div class="footer">
-Veritas Libris Habitat — Truth lives in books.<br><br>
-© 2026 Kensano Archive. All names, manuscripts, concepts reserved.
-</div></div>
-</div><div class="modal" id="modal">
-<div class="modal-box">
-<h3 id="mBook"></h3>
-<p id="mAuthor"></p>
-<button onclick="closeBook()">Close</button>
-</div>
-</div><script>
-function openBook(b,a){
-document.getElementById('modal').style.display='flex';
-document.getElementById('mBook').innerText=b;
-document.getElementById('mAuthor').innerText='Author: '+a;
-}
-function closeBook(){document.getElementById('modal').style.display='none';}
 
-let launch=new Date().getTime()+1000*60*60*24*30;
-setInterval(()=>{
-let now=new Date().getTime();
-let d=launch-now;
-let days=Math.floor(d/(1000*60*60*24));
-let hrs=Math.floor((d%(1000*60*60*24))/(1000*60*60));
-let mins=Math.floor((d%(1000*60*60))/(1000*60));
-let secs=Math.floor((d%(1000*60))/1000);
-document.getElementById('count').innerHTML='Archive opens in '+days+'d '+hrs+'h '+mins+'m '+secs+'s';
-},1000);
-</script></body>
+@media(max-width:600px){
+.books{grid-template-columns:1fr}
+h1{font-size:32px}
+}
+
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+<h1>KENSANO</h1>
+<div class="subtitle">Private Digital Archive</div>
+
+<div class="quote">
+“A quiet cathedral of books is awakening…  
+ink remembers every love that history forgot.”
+</div>
+
+<!-- BOOK LIST -->
+<div class="section">
+<h2>Upcoming Manuscripts</h2>
+
+<div class="books">
+
+<span>Adhuri Dastaan — <b>Shubh</b></span>
+<span>Rain Between Two Pages — Zoya</span>
+
+<span>Poets Are Quiet — Kanav</span>
+<span>The Silence of Her Name — Akshit</span>
+
+<span>Love & Luck — Siddharth</span>
+<span>Letters Never Posted — Shubh</span>
+
+<span>Last Letter in Winter — Zoya</span>
+<span>Autumn Without Goodbye — Kanav</span>
+
+<span>Dust of Old Letters — Akshit</span>
+<span>Echoes of Quiet Love — Siddharth</span>
+
+<span>Midnight Without You — Shubh</span>
+<span>The Girl Who Loved Libraries — Zoya</span>
+
+<span>Where Old Radios Still Sing — Kanav</span>
+<span>Songs From Broken Clocks — Akshit</span>
+
+<span>Ink on Sleepless Nights — Siddharth</span>
+<span>The Library of Lost Promises — Zoya</span>
+
+</div>
+
+<div class="countdown" id="countdown"></div>
+</div>
+
+<!-- ABOUT -->
+<div class="section">
+<h2>About Kensano</h2>
+<div class="about">
+Kensano is a private archive of unfinished letters, quiet poems,
+and stories that deserve memory. Early access is invitation-only
+to preserve authenticity and trust inside every manuscript.
+</div>
+</div>
+
+<!-- SUBMISSION -->
+<div class="section">
+<h2>Manuscript Submission</h2>
+Send your poem, diary, short story or novel to  
+<b>admin@kensano.in</b>  
+with your name and short introduction.
+</div>
+
+<!-- FOUNDERS -->
+<div class="section">
+<h2>Founders</h2>
+Shinichiro — Vision & Archive Design  
+Ken — Systems & Preservation Technology
+</div>
+
+<div class="footer">
+Veritas Libris Habitat — Truth lives in books. <br><br>
+© 2026 Kensano Archive. All book titles, author names, designs,
+and archive concepts are reserved by Kensano.
+</div>
+
+</div>
+
+<!-- REAL FIXED COUNTDOWN -->
+<script>
+const launchDate = new Date("2026-04-01T00:00:00").getTime();
+
+function updateClock(){
+const now = Date.now();
+const diff = launchDate - now;
+
+if(diff <= 0){
+document.getElementById("countdown").innerHTML = "Archive Opened";
+return;
+}
+
+const d = Math.floor(diff / (1000*60*60*24));
+const h = Math.floor((diff/(1000*60*60)) % 24);
+const m = Math.floor((diff/(1000*60)) % 60);
+const s = Math.floor((diff/1000) % 60);
+
+document.getElementById("countdown").innerHTML =
+"Archive opens in " + d+"d "+h+"h "+m+"m "+s+"s";
+}
+
+updateClock();
+setInterval(updateClock,1000);
+</script>
+
+</body>
 </html>
