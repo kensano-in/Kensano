@@ -3,166 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KENSANO LIBRARY — Phase-13</title>
+<title>Kensano Private Library</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Text&display=swap" rel="stylesheet">
 
 <style>
-body{margin:0;overflow:hidden;background:#05060a;font-family:serif;color:#e8dcc0}
-
-#ui{
-position:absolute;top:20px;left:20px;
-background:rgba(0,0,0,.55);
-padding:16px 20px;border-radius:14px;
-box-shadow:0 0 30px rgba(0,0,0,.6)
+body{
+margin:0;
+background:#0a0a0c;
+color:#e8dfc9;
+font-family:"Crimson Text",serif;
 }
 
+/* INTRO */
+#intro{
+position:fixed;
+inset:0;
+background:black;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+z-index:10;
+animation:fade 5s forwards 5s;
+}
+#intro h1{
+font-family:"Cinzel";
+letter-spacing:12px;
+font-size:60px;
+background:linear-gradient(90deg,#fff,#d6c39a,#fff);
+-webkit-background-clip:text;
+color:transparent;
+}
+#intro p{opacity:.6}
+@keyframes fade{to{opacity:0;visibility:hidden}}
+
+/* CARD */
+.wrap{
+max-width:800px;
+margin:100px auto;
+padding:50px;
+background:#121318;
+border-radius:22px;
+box-shadow:0 40px 100px rgba(0,0,0,.8);
+text-align:center;
+}
+
+.logo{
+font-family:"Cinzel";
+font-size:48px;
+letter-spacing:10px;
+margin-bottom:10px;
+background:linear-gradient(90deg,#fff,#d6c39a,#fff);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.subtitle{
+opacity:.7;
+margin-bottom:30px;
+font-size:18px;
+}
+
+/* BOOK */
+.book{
+width:220px;
+height:150px;
+margin:30px auto;
+background:#d9c9a3;
+position:relative;
+transform-style:preserve-3d;
+animation:flip 5s infinite alternate ease-in-out;
+}
+@keyframes flip{
+from{transform:rotateY(-15deg)}
+to{transform:rotateY(15deg)}
+}
+
+/* PARCHMENT */
+.paper{
+background:#f5e7c6;
+color:#000;
+padding:25px;
+border-radius:12px;
+margin:30px 0;
+font-style:italic;
+}
+
+/* BUTTON */
 button{
-margin-top:6px;padding:8px 12px;border-radius:10px;border:none;
+padding:12px 20px;
+border:none;
+border-radius:12px;
 background:linear-gradient(90deg,#e7d9b7,#bfa979);
-cursor:pointer;font-weight:bold
+font-weight:bold;
+cursor:pointer;
+margin:10px;
+}
+
+.footer{
+margin-top:30px;
+opacity:.6;
 }
 </style>
 </head>
+
 <body>
 
-<div id="ui">
-<b>KENSANO LIBRARY</b><br>
-WASD move • E door<br>
-<button onclick="saveBook()">📚 Save Book</button>
-<button onclick="openDiary()">📜 Founder Diary</button>
+<div id="intro">
+<h1>KENSANO</h1>
+<p>A Private Digital Library</p>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/nipplejs@0.10.1/dist/nipplejs.min.js"></script>
+<div class="wrap">
+
+<div class="logo">KENSANO</div>
+<div class="subtitle">
+A quiet cathedral of books is awakening…<br>
+where unfinished poems wait for candlelight.
+</div>
+
+<div class="book"></div>
+
+<div class="paper" id="quote"></div>
+
+<button onclick="letter()">Founder Letter</button>
+
+<p>
+Upcoming Manuscript: <b>Adhuri Dastaan</b><br>
+Submit your story → <b>admin@kensano.in</b>
+</p>
+
+<div class="footer" id="motto"></div>
+
+</div>
 
 <script>
 
-// ---------- SCENE ----------
-const scene=new THREE.Scene();
-scene.fog=new THREE.Fog(0x000000,10,80);
+/* QUOTE */
+const quotes=[
+"Some books are doors, some are mirrors.",
+"A poem is a wound that learns to sing.",
+"The quietest libraries hold the loudest hearts.",
+"In candlelight, even silence reads."
+];
+quote.innerText=quotes[Math.floor(Math.random()*quotes.length)];
 
-const cam=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,.1,1000);
-cam.position.set(0,2,8);
+/* MOTTO */
+const mottos=[
+"Ex Libris Lux",
+"Veritas Libris Habitat",
+"Silentium Sapientiae Custos",
+"Scientia in Tenebris Lucet"
+];
+motto.innerText="Latin Motto — "+mottos[Math.floor(Math.random()*mottos.length)];
 
-const ren=new THREE.WebGLRenderer({antialias:true});
-ren.setSize(innerWidth,innerHeight);
-document.body.appendChild(ren.domElement);
-
-// ---------- LIGHT ----------
-const amb=new THREE.AmbientLight(0xffffff,.3);
-scene.add(amb);
-
-const candle=new THREE.PointLight(0xffc58f,1.2,20);
-candle.position.set(0,4,0);
-scene.add(candle);
-setInterval(()=>candle.intensity=.8+Math.random()*.4,120);
-
-// ---------- FLOOR ----------
-const floor=new THREE.Mesh(
-new THREE.PlaneGeometry(120,120),
-new THREE.MeshStandardMaterial({color:0x1a120b})
-);
-floor.rotation.x=-Math.PI/2;
-scene.add(floor);
-
-// ---------- SHELVES ----------
-for(let i=0;i<12;i++){
-let s=new THREE.Mesh(
-new THREE.BoxGeometry(6,.3,1),
-new THREE.MeshStandardMaterial({color:0x5a3a1e})
-);
-s.position.set((i%4)*7-10,2+Math.floor(i/4)*2,-12);
-scene.add(s);
+function letter(){
+alert("My dear reader…\\nKensano is not built with code alone, but with patience, heartbreak, and unfinished poems.\\n— Shinichiro & Ken");
 }
 
-// ---------- PAGE FLIP BOOK ----------
-const book=new THREE.Mesh(
-new THREE.BoxGeometry(2,.2,1.5),
-new THREE.MeshStandardMaterial({color:0xd8c9a3})
-);
-book.position.set(2,1,-6);
-scene.add(book);
-
-let flip=false;
-setInterval(()=>{
-flip=!flip;
-book.rotation.y=flip?0.4:-0.4;
-},2000);
-
-// ---------- SECRET DOOR ----------
-const door=new THREE.Mesh(
-new THREE.BoxGeometry(2,4,.2),
-new THREE.MeshStandardMaterial({color:0x3b2616})
-);
-door.position.set(10,2,-12);
-scene.add(door);
-
-window.addEventListener("keydown",(e)=>{
-if(e.key==="e"){
-door.rotation.y-=Math.PI/2;
-cam.position.set(0,2,-25);
-alert("📜 Secret Archive Opened");
-}
-});
-
-// ---------- GHOST READER ----------
-const ghost=new THREE.Mesh(
-new THREE.SphereGeometry(.5,16,16),
-new THREE.MeshStandardMaterial({color:0xffffff,transparent:true,opacity:.4})
-);
-ghost.position.set(-4,1,-6);
-scene.add(ghost);
-
-function ghostMove(){
-ghost.position.x+=Math.sin(Date.now()/1000)*.01;
-}
-
-// ---------- SAVE BOOK ----------
-function saveBook(){
-let list=JSON.parse(localStorage.getItem("kensano_books")||"[]");
-list.push("Adhuri Dastaan");
-localStorage.setItem("kensano_books",JSON.stringify(list));
-alert("Saved to your shelf 📚");
-}
-
-// ---------- DIARY ----------
-function openDiary(){
-alert("My dear reader…\\nLibraries are built from patience and heartbreak.\\n— Shinichiro & Ken");
-}
-
-// ---------- MOBILE JOYSTICK ----------
-const joy=nipplejs.create({
-zone:document.body,
-mode:'static',
-position:{left:'80px',bottom:'80px'},
-color:'gold'
-});
-
-joy.on('move',(e,d)=>{
-cam.position.x+=d.vector.x*.1;
-cam.position.z+=d.vector.y*.1;
-});
-
-// ---------- KEYS ----------
-window.addEventListener("keydown",(e)=>{
-if(e.key==="w")cam.position.z-=.5;
-if(e.key==="s")cam.position.z+=.5;
-if(e.key==="a")cam.position.x-=.5;
-if(e.key==="d")cam.position.x+=.5;
-});
-
-// ---------- LOOP ----------
-function anim(){
-requestAnimationFrame(anim);
-ghostMove();
-ren.render(scene,cam);
-}
-anim();
-
-onresize=()=>{
-cam.aspect=innerWidth/innerHeight;
-cam.updateProjectionMatrix();
-ren.setSize(innerWidth,innerHeight);
-};
 </script>
 </body>
 </html>
