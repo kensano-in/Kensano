@@ -33,19 +33,10 @@ letter-spacing:4px;
 margin-bottom:20px;
 }
 
-.search{
-width:100%;
-padding:8px;
-background:#1c1d22;
-border:none;
-color:white;
-margin-bottom:20px;
-}
-
 .booklist div{
 padding:8px 0;
 cursor:pointer;
-opacity:.8;
+opacity:.85;
 }
 .booklist div:hover{opacity:1;color:#c9b27a}
 
@@ -58,11 +49,10 @@ overflow-y:auto;
 
 .title{
 font-family:"Playfair Display";
-font-size:38px;
-margin-bottom:20px;
+font-size:36px;
+margin-bottom:10px;
 }
 
-/* ===== READER ===== */
 .reader{
 max-width:700px;
 margin:auto;
@@ -70,17 +60,10 @@ line-height:1.9;
 font-size:20px;
 }
 
-.page{
-display:none;
-}
-.page.active{
-display:block;
-}
+.page{display:none;}
+.page.active{display:block;}
 
-.controls{
-text-align:center;
-margin-top:30px;
-}
+.controls{text-align:center;margin-top:30px;}
 button{
 padding:8px 16px;
 margin:5px;
@@ -89,9 +72,18 @@ border:1px solid #c9b27a;
 color:white;
 cursor:pointer;
 }
-button:hover{
-background:#c9b27a;
-color:black;
+button:hover{background:#c9b27a;color:black;}
+
+.upcoming{
+margin-top:50px;
+padding-top:30px;
+border-top:1px solid rgba(255,255,255,.08);
+}
+
+.countdown{
+font-size:18px;
+margin-top:10px;
+opacity:.8;
 }
 </style>
 </head>
@@ -100,14 +92,28 @@ color:black;
 
 <div class="sidebar">
 <div class="logo">KENSANO</div>
-<input class="search" placeholder="Search book…">
 
+<b>Archive</b>
 <div class="booklist">
-<div onclick="openBook('adhuri')">Adhuri Dastaan</div>
-<div onclick="openBook('quiet')">Poets Are Quiet</div>
-<div onclick="openBook('luck')">Love & Luck</div>
-<div onclick="openBook('winter')">The Last Letter in Winter</div>
+<div onclick="openBook(1,'Adhuri Dastaan')">Adhuri Dastaan</div>
+<div onclick="openBook(2,'Poets Are Quiet')">Poets Are Quiet</div>
+<div onclick="openBook(3,'Love & Luck')">Love & Luck</div>
+<div onclick="openBook(4,'The Last Letter in Winter')">The Last Letter in Winter</div>
 </div>
+
+<div class="upcoming">
+<b>Upcoming</b>
+<div>Ink on Sleepless Nights</div>
+<div>The Library of Lost Promises</div>
+<div>Where Old Radios Still Sing</div>
+<div>Midnight Without You</div>
+<div>The Dust of Old Letters</div>
+
+<div class="countdown">
+Releasing in: <span id="timer"></span>
+</div>
+</div>
+
 </div>
 
 <div class="main">
@@ -116,30 +122,29 @@ color:black;
 
 <div class="reader">
 
-<div id="page1" class="page active">
-Choose a manuscript from the archive on the left.  
+<div id="page0" class="page active">
+Choose a manuscript from the archive.  
 A library opens slowly… like trust.
 </div>
 
-<div id="adhuri" class="page">
+<div id="page1" class="page">
 She left before the last sentence.  
-The ink dried.  
-But the story still waits…
+The ink dried… but the story still waits.
 </div>
 
-<div id="quiet" class="page">
+<div id="page2" class="page">
 Poets are quiet,  
 because storms whisper inside them.
 </div>
 
-<div id="luck" class="page">
+<div id="page3" class="page">
 Love and luck met on a rainy night.  
 Only one stayed.
 </div>
 
-<div id="winter" class="page">
-Snow covered the letter.  
-But not the goodbye.
+<div id="page4" class="page">
+Snow covered the letter…  
+but not the goodbye.
 </div>
 
 </div>
@@ -154,6 +159,7 @@ But not the goodbye.
 
 <script>
 
+/* ===== BOOK READER ===== */
 let pages=document.querySelectorAll(".page");
 let current=0;
 
@@ -166,16 +172,33 @@ current=i;
 function next(){ if(current<pages.length-1) show(current+1); }
 function prev(){ if(current>0) show(current-1); }
 
-function openBook(id){
-pages.forEach(p=>p.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-document.getElementById("bookTitle").innerText=id.replace(/^\w/,c=>c.toUpperCase());
+function openBook(id,name){
+show(id);
+document.getElementById("bookTitle").innerText=name;
 }
 
 function bookmark(){
 localStorage.setItem("kensanoBookmark",current);
 alert("Bookmark saved 📚");
 }
+
+/* ===== COUNTDOWN ===== */
+let releaseDate=new Date();
+releaseDate.setDate(releaseDate.getDate()+30); // 30 days
+
+function updateTimer(){
+let now=new Date().getTime();
+let dist=releaseDate-now;
+
+let d=Math.floor(dist/(1000*60*60*24));
+let h=Math.floor((dist%(1000*60*60*24))/(1000*60*60));
+let m=Math.floor((dist%(1000*60*60))/(1000*60));
+let s=Math.floor((dist%(1000*60))/1000);
+
+document.getElementById("timer").innerText=
+d+"d "+h+"h "+m+"m "+s+"s";
+}
+setInterval(updateTimer,1000);
 
 </script>
 
