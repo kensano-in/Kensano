@@ -1,167 +1,153 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Kensano Private Library</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Text&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 
 <style>
+:root{
+--bg:#0c0d10;
+--paper:#f2e6c9;
+--gold:#c7b27a;
+--text:#e8e1cf;
+}
+
+*{box-sizing:border-box}
+
 body{
 margin:0;
-background:#0a0a0c;
-color:#e8dfc9;
-font-family:"Crimson Text",serif;
+background:var(--bg);
+color:var(--text);
+font-family:"Cormorant Garamond",serif;
 }
 
-/* INTRO */
-#intro{
-position:fixed;
-inset:0;
-background:black;
+/* ===== CINEMATIC INTRO ===== */
+.intro{
+height:100vh;
 display:flex;
-flex-direction:column;
 align-items:center;
 justify-content:center;
-z-index:10;
-animation:fade 5s forwards 5s;
-}
-#intro h1{
-font-family:"Cinzel";
-letter-spacing:12px;
-font-size:60px;
-background:linear-gradient(90deg,#fff,#d6c39a,#fff);
--webkit-background-clip:text;
-color:transparent;
-}
-#intro p{opacity:.6}
-@keyframes fade{to{opacity:0;visibility:hidden}}
-
-/* CARD */
-.wrap{
-max-width:800px;
-margin:100px auto;
-padding:50px;
-background:#121318;
-border-radius:22px;
-box-shadow:0 40px 100px rgba(0,0,0,.8);
+flex-direction:column;
 text-align:center;
+letter-spacing:6px;
 }
-
-.logo{
-font-family:"Cinzel";
-font-size:48px;
-letter-spacing:10px;
-margin-bottom:10px;
-background:linear-gradient(90deg,#fff,#d6c39a,#fff);
+.intro h1{
+font-family:"Playfair Display";
+font-size:clamp(40px,6vw,90px);
+background:linear-gradient(90deg,#fff,var(--gold),#fff);
 -webkit-background-clip:text;
 color:transparent;
+margin:0;
 }
-
-.subtitle{
-opacity:.7;
-margin-bottom:30px;
-font-size:18px;
-}
-
-/* BOOK */
-.book{
-width:220px;
-height:150px;
-margin:30px auto;
-background:#d9c9a3;
-position:relative;
-transform-style:preserve-3d;
-animation:flip 5s infinite alternate ease-in-out;
-}
-@keyframes flip{
-from{transform:rotateY(-15deg)}
-to{transform:rotateY(15deg)}
-}
-
-/* PARCHMENT */
-.paper{
-background:#f5e7c6;
-color:#000;
-padding:25px;
-border-radius:12px;
-margin:30px 0;
-font-style:italic;
-}
-
-/* BUTTON */
-button{
-padding:12px 20px;
-border:none;
-border-radius:12px;
-background:linear-gradient(90deg,#e7d9b7,#bfa979);
-font-weight:bold;
-cursor:pointer;
-margin:10px;
-}
-
-.footer{
-margin-top:30px;
+.intro p{
 opacity:.6;
+margin-top:10px;
+}
+
+/* ===== MAIN ===== */
+.section{
+max-width:900px;
+margin:120px auto;
+padding:0 20px;
+}
+
+.title{
+font-family:"Playfair Display";
+font-size:42px;
+letter-spacing:4px;
+margin-bottom:20px;
+}
+
+.lead{
+font-size:22px;
+line-height:1.7;
+opacity:.85;
+}
+
+.divider{
+height:1px;
+background:rgba(255,255,255,.1);
+margin:60px 0;
+}
+
+.quote{
+background:var(--paper);
+color:#111;
+padding:30px;
+font-style:italic;
+border-left:4px solid var(--gold);
+}
+
+/* ===== BUTTON ===== */
+.btn{
+display:inline-block;
+margin-top:30px;
+padding:12px 26px;
+border:1px solid var(--gold);
+background:none;
+color:var(--text);
+text-decoration:none;
+transition:.3s;
+}
+.btn:hover{
+background:var(--gold);
+color:#111;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+margin-top:120px;
+text-align:center;
+opacity:.6;
+font-size:14px;
 }
 </style>
 </head>
 
 <body>
 
-<div id="intro">
+<!-- INTRO -->
+<div class="intro">
 <h1>KENSANO</h1>
-<p>A Private Digital Library</p>
+<p>Private Digital Library</p>
 </div>
 
-<div class="wrap">
+<!-- SECTION 1 -->
+<div class="section">
+<div class="title">A Quiet Cathedral of Books</div>
 
-<div class="logo">KENSANO</div>
-<div class="subtitle">
-A quiet cathedral of books is awakening…<br>
-where unfinished poems wait for candlelight.
-</div>
-
-<div class="book"></div>
-
-<div class="paper" id="quote"></div>
-
-<button onclick="letter()">Founder Letter</button>
-
-<p>
-Upcoming Manuscript: <b>Adhuri Dastaan</b><br>
-Submit your story → <b>admin@kensano.in</b>
+<p class="lead">
+Kensano is being built for those who still believe that words deserve silence,
+that unfinished poems deserve patience,
+and that libraries should feel like candlelight instead of noise.
 </p>
 
-<div class="footer" id="motto"></div>
+<a class="btn" href="mailto:admin@kensano.in">
+Submit Your Manuscript
+</a>
+
+<div class="divider"></div>
+
+<div class="quote">
+“Some books are doors. Some are mirrors.  
+And some are the only place where broken hearts learn to breathe.”
+</div>
+
+<div class="divider"></div>
+
+<p class="lead">
+Upcoming Manuscript — <b>Adhuri Dastaan</b>
+</p>
+
+<div class="footer">
+Founded by Shinichiro & Ken  
+• Veritas Libris Habitat •
+</div>
 
 </div>
 
-<script>
-
-/* QUOTE */
-const quotes=[
-"Some books are doors, some are mirrors.",
-"A poem is a wound that learns to sing.",
-"The quietest libraries hold the loudest hearts.",
-"In candlelight, even silence reads."
-];
-quote.innerText=quotes[Math.floor(Math.random()*quotes.length)];
-
-/* MOTTO */
-const mottos=[
-"Ex Libris Lux",
-"Veritas Libris Habitat",
-"Silentium Sapientiae Custos",
-"Scientia in Tenebris Lucet"
-];
-motto.innerText="Latin Motto — "+mottos[Math.floor(Math.random()*mottos.length)];
-
-function letter(){
-alert("My dear reader…\\nKensano is not built with code alone, but with patience, heartbreak, and unfinished poems.\\n— Shinichiro & Ken");
-}
-
-</script>
 </body>
 </html>
