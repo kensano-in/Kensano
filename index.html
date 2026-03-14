@@ -1,212 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>Kensano Archive</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 
-<style>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond&display=swap" rel="stylesheet">
 
-*{margin:0;padding:0;box-sizing:border-box}
-
-body{
-background:#0b0c10;
-color:#e6dcc5;
-font-family:"EB Garamond",serif;
-line-height:1.7;
-}
-
-.wrapper{
-max-width:900px;
-margin:auto;
-padding:50px 25px;
-}
-
-h1{
-font-family:"Cinzel",serif;
-letter-spacing:8px;
-font-size:44px;
-text-align:center;
-margin-bottom:10px;
-color:#d8c59c;
-}
-
-.subtitle{
-text-align:center;
-opacity:.7;
-margin-bottom:50px;
-font-size:15px;
-}
-
-.quote{
-text-align:center;
-font-style:italic;
-font-size:18px;
-margin-bottom:60px;
-opacity:.85;
-}
-
-.section{
-margin-top:60px;
-}
-
-.section h2{
-font-family:"Cinzel",serif;
-letter-spacing:4px;
-font-size:22px;
-margin-bottom:20px;
-color:#d8c59c;
-border-bottom:1px solid rgba(255,255,255,.08);
-padding-bottom:10px;
-}
-
-.books{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px 40px;
-font-size:17px;
-}
-
-.books span{
-opacity:.9;
-}
-
-.countdown{
-text-align:center;
-font-size:22px;
-margin-top:30px;
-letter-spacing:3px;
-color:#d8c59c;
-}
-
-.about{
-opacity:.85;
-margin-top:10px;
-}
-
-.footer{
-margin-top:80px;
-font-size:13px;
-opacity:.6;
-text-align:center;
-border-top:1px solid rgba(255,255,255,.08);
-padding-top:25px;
-}
-
-@media(max-width:600px){
-.books{grid-template-columns:1fr}
-h1{font-size:32px}
-}
-
-</style>
 </head>
+
 <body>
 
-<div class="wrapper">
+<header class="hero">
 
 <h1>KENSANO</h1>
-<div class="subtitle">Private Digital Archive</div>
 
-<div class="quote">
-“A quiet cathedral of books is awakening…  
-ink remembers every love that history forgot.”
-</div>
+<p class="subtitle">Private Digital Archive</p>
 
-<!-- BOOK LIST -->
-<div class="section">
+</header>
+
+
+<section class="quote">
+
+<p>
+“Books remember the love that people forget.”
+</p>
+
+</section>
+
+
+
+<section class="books">
+
 <h2>Upcoming Manuscripts</h2>
 
-<div class="books">
+<div class="grid">
 
-<span>Adhuri Dastaan — <b>Shubh</b></span>
-<span>Rain Between Two Pages — Zoya</span>
 
-<span>Poets Are Quiet — Kanav</span>
-<span>The Silence of Her Name — Akshit</span>
+<div class="book">
+Adhuri Dastaan
+<span>Shubh</span>
+</div>
 
-<span>Love & Luck — Siddharth</span>
-<span>Letters Never Posted — Shubh</span>
+<div class="book">
+Poets Are Quiet
+<span>Kanav</span>
+</div>
 
-<span>Last Letter in Winter — Zoya</span>
-<span>Autumn Without Goodbye — Kanav</span>
+<div class="book">
+Love & Luck
+<span>Siddharth</span>
+</div>
 
-<span>Dust of Old Letters — Akshit</span>
-<span>Echoes of Quiet Love — Siddharth</span>
+<div class="book">
+Last Letter in Winter
+<span>Zoya</span>
+</div>
 
-<span>Midnight Without You — Shubh</span>
-<span>The Girl Who Loved Libraries — Zoya</span>
+<div class="book">
+Dust of Old Letters
+<span>Akshit</span>
+</div>
 
-<span>Where Old Radios Still Sing — Kanav</span>
-<span>Songs From Broken Clocks — Akshit</span>
+<div class="book">
+Midnight Without You
+<span>Shubh</span>
+</div>
 
-<span>Ink on Sleepless Nights — Siddharth</span>
-<span>The Library of Lost Promises — Zoya</span>
+<div class="book">
+Where Old Radios Still Sing
+<span>Kanav</span>
+</div>
+
+<div class="book">
+Ink on Sleepless Nights
+<span>Siddharth</span>
+</div>
+
+<div class="book">
+Rain Between Two Pages
+<span>Zoya</span>
+</div>
+
+<div class="book">
+The Silence of Her Name
+<span>Akshit</span>
+</div>
+
+<div class="book">
+Letters Never Posted
+<span>Shubh</span>
+</div>
+
+<div class="book">
+Autumn Without Goodbye
+<span>Kanav</span>
+</div>
+
+<div class="book">
+Echoes of Quiet Love
+<span>Siddharth</span>
+</div>
+
+<div class="book">
+The Girl Who Loved Libraries
+<span>Zoya</span>
+</div>
+
+<div class="book">
+Songs From Broken Clocks
+<span>Akshit</span>
+</div>
+
 
 </div>
 
-<div class="countdown" id="countdown"></div>
-</div>
+</section>
 
-<!-- ABOUT -->
-<div class="section">
+
+<section class="countdown">
+
+<p>Archive Opening In</p>
+
+<h3 id="timer"></h3>
+
+</section>
+
+
+<section class="about">
+
 <h2>About Kensano</h2>
-<div class="about">
-Kensano is a private archive of unfinished letters, quiet poems,
-and stories that deserve memory. Early access is invitation-only
-to preserve authenticity and trust inside every manuscript.
-</div>
-</div>
 
-<!-- SUBMISSION -->
-<div class="section">
+<p>
+
+Kensano is a private digital archive dedicated to preserving unfinished letters, quiet poems and stories that deserve memory.  
+Access is invitation-only during its early phase.
+
+</p>
+
+</section>
+
+
+<section class="submission">
+
 <h2>Manuscript Submission</h2>
-Send your poem, diary, short story or novel to  
-<b>admin@kensano.in</b>  
-with your name and short introduction.
-</div>
 
-<!-- FOUNDERS -->
-<div class="section">
-<h2>Founders</h2>
-Shinichiro — Vision & Archive Design  
-Ken — Systems & Preservation Technology
-</div>
+<p>
 
-<div class="footer">
-Veritas Libris Habitat — Truth lives in books. <br><br>
-© 2026 Kensano Archive. All book titles, author names, designs,
-and archive concepts are reserved by Kensano.
-</div>
+If you have written a poem, diary, short story or novel you wish to preserve inside Kensano, send your manuscript to:
 
-</div>
+<br><br>
 
-<!-- REAL FIXED COUNTDOWN -->
-<script>
-const launchDate = new Date("2026-04-01T00:00:00").getTime();
+<strong>admin@kensano.in</strong>
 
-function updateClock(){
-const now = Date.now();
-const diff = launchDate - now;
+</p>
 
-if(diff <= 0){
-document.getElementById("countdown").innerHTML = "Archive Opened";
-return;
-}
+</section>
 
-const d = Math.floor(diff / (1000*60*60*24));
-const h = Math.floor((diff/(1000*60*60)) % 24);
-const m = Math.floor((diff/(1000*60)) % 60);
-const s = Math.floor((diff/1000) % 60);
 
-document.getElementById("countdown").innerHTML =
-"Archive opens in " + d+"d "+h+"h "+m+"m "+s+"s";
-}
+<footer>
 
-updateClock();
-setInterval(updateClock,1000);
-</script>
+<p>
+
+Veritas Libris Habitat — Truth lives in books.
+
+</p>
+
+<p class="copyright">
+
+© 2026 Kensano Archive.  
+All book titles, author names and manuscript concepts are reserved by Kensano.
+
+</p>
+
+</footer>
+
+<script src="script.js"></script>
 
 </body>
+
 </html>
