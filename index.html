@@ -1,187 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<title>Kensano Archive</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond&display=swap" rel="stylesheet">
-
-</head>
-
-<body>
-
-<header class="hero">
-
-<h1>KENSANO</h1>
-
-<p class="subtitle">Private Digital Archive</p>
-
-</header>
-
-
-<section class="quote">
-
-<p>
-“Books remember the love that people forget.”
-</p>
-
-</section>
-
-
-
-<section class="books">
-
-<h2>Upcoming Manuscripts</h2>
-
-<div class="grid">
-
-
-<div class="book">
-Adhuri Dastaan
-<span>Shubh</span>
-</div>
-
-<div class="book">
-Poets Are Quiet
-<span>Kanav</span>
-</div>
-
-<div class="book">
-Love & Luck
-<span>Siddharth</span>
-</div>
-
-<div class="book">
-Last Letter in Winter
-<span>Zoya</span>
-</div>
-
-<div class="book">
-Dust of Old Letters
-<span>Akshit</span>
-</div>
-
-<div class="book">
-Midnight Without You
-<span>Shubh</span>
-</div>
-
-<div class="book">
-Where Old Radios Still Sing
-<span>Kanav</span>
-</div>
-
-<div class="book">
-Ink on Sleepless Nights
-<span>Siddharth</span>
-</div>
-
-<div class="book">
-Rain Between Two Pages
-<span>Zoya</span>
-</div>
-
-<div class="book">
-The Silence of Her Name
-<span>Akshit</span>
-</div>
-
-<div class="book">
-Letters Never Posted
-<span>Shubh</span>
-</div>
-
-<div class="book">
-Autumn Without Goodbye
-<span>Kanav</span>
-</div>
-
-<div class="book">
-Echoes of Quiet Love
-<span>Siddharth</span>
-</div>
-
-<div class="book">
-The Girl Who Loved Libraries
-<span>Zoya</span>
-</div>
-
-<div class="book">
-Songs From Broken Clocks
-<span>Akshit</span>
-</div>
-
-
-</div>
-
-</section>
-
-
-<section class="countdown">
-
-<p>Archive Opening In</p>
-
-<h3 id="timer"></h3>
-
-</section>
-
-
-<section class="about">
-
-<h2>About Kensano</h2>
-
-<p>
-
-Kensano is a private digital archive dedicated to preserving unfinished letters, quiet poems and stories that deserve memory.  
-Access is invitation-only during its early phase.
-
-</p>
-
-</section>
-
-
-<section class="submission">
-
-<h2>Manuscript Submission</h2>
-
-<p>
-
-If you have written a poem, diary, short story or novel you wish to preserve inside Kensano, send your manuscript to:
-
-<br><br>
-
-<strong>admin@kensano.in</strong>
-
-</p>
-
-</section>
-
-
-<footer>
-
-<p>
-
-Veritas Libris Habitat — Truth lives in books.
-
-</p>
-
-<p class="copyright">
-
-© 2026 Kensano Archive.  
-All book titles, author names and manuscript concepts are reserved by Kensano.
-
-</p>
-
-</footer>
-
-<script src="script.js"></script>
-
-</body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aegis — Life Control System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="bg-mesh" aria-hidden="true"></div>
+
+    <main class="app-shell" id="appShell">
+      <header class="top-bar glass">
+        <div>
+          <p class="kicker">Aegis</p>
+          <h1>Command Mode</h1>
+        </div>
+        <button id="recalibrateBtn" class="neon-btn">Recalibrate</button>
+      </header>
+
+      <section class="core-grid">
+        <article class="orb-panel glass">
+          <p class="panel-label">Control Core</p>
+          <div class="orb" id="coreOrb">
+            <span class="orb-glow"></span>
+            <strong id="controlScore">--</strong>
+            <small>control score</small>
+          </div>
+          <p id="statusLine" class="status-line">Set your pulse to receive your next move.</p>
+        </article>
+
+        <article class="card pulse-card glass">
+          <div class="card-head">
+            <h2>Pulse Check</h2>
+            <span>3 sec</span>
+          </div>
+          <div class="selectors">
+            <label>Focus
+              <select id="focus">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+              </select>
+            </label>
+            <label>Energy
+              <select id="energy">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+              </select>
+            </label>
+            <label>Mood
+              <select id="mood">
+                <option value="calm" selected>Calm</option>
+                <option value="anxious">Anxious</option>
+                <option value="flat">Flat</option>
+              </select>
+            </label>
+          </div>
+          <button id="pulseBtn" class="ghost-btn">Update pulse</button>
+        </article>
+
+        <article class="card directive-card glass" id="directiveCard">
+          <div class="card-head">
+            <h2>Next Move Engine</h2>
+            <span id="directiveDuration">-- min</span>
+          </div>
+          <h3 id="directiveTitle">Awaiting calibration</h3>
+          <p id="directiveMode" class="meta">Mode: --</p>
+          <div class="timer-row">
+            <p id="timerText">No active block</p>
+            <button id="executeBtn" class="neon-btn">Execute</button>
+          </div>
+        </article>
+
+        <article class="card decision-card glass">
+          <div class="card-head">
+            <h2>Decision Drop</h2>
+            <span>5-10 sec</span>
+          </div>
+          <p class="hint">Use format: option A vs option B</p>
+          <input id="decisionInput" type="text" placeholder="Ship draft now vs refine 30 min" />
+          <button id="decisionBtn" class="ghost-btn">Resolve</button>
+          <div id="decisionResult" class="result hidden"></div>
+        </article>
+
+        <article class="card state-card glass">
+          <div class="card-head">
+            <h2>State Shift</h2>
+            <span>90 sec</span>
+          </div>
+          <p id="stateMessage">When stuck, run a reset to force momentum.</p>
+          <button id="stateBtn" class="ghost-btn">Start reset</button>
+        </article>
+
+        <article class="card ledger-card glass">
+          <div class="card-head">
+            <h2>Momentum Ledger</h2>
+            <span>Today</span>
+          </div>
+          <div class="stats">
+            <p>Executed directives <strong id="executedCount">0</strong></p>
+            <p>Fast recoveries <strong id="recoveryCount">0</strong></p>
+            <p>Last completion <strong id="lastCompletion">--</strong></p>
+          </div>
+          <button id="clearLedger" class="clear-btn">Reset ledger</button>
+        </article>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
 </html>
